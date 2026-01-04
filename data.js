@@ -42,7 +42,7 @@ const films = [
     support: "DVD",
     badge: "Gratuit",
     gratuit: true,
-    image: "https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPMPZwt586.jpg",
+    image: "https://fr.web.img3.acsta.net/pictures/19/02/25/12/06/2908996.jpg",
     lecture: true,
   },
   {
@@ -81,7 +81,8 @@ const films = [
     support: "DVD",
     badge: "HD",
     gratuit: false,
-    image: "https://image.tmdb.org/t/p/w500/1qLJIQ729s0e8s3c3C6mH8v1F1p.jpg",
+    image:
+      "https://fr.web.img5.acsta.net/medias/nmedia/00/00/00/33/spiderman.jpg",
     lecture: true,
   },
   {
@@ -94,7 +95,8 @@ const films = [
     support: "DVD",
     badge: "Gratuit",
     gratuit: true,
-    image: "https://image.tmdb.org/t/p/w500/kgwjIb2JDHRhJy13pXvQlfFAPn.jpg",
+    image:
+      "https://fr.web.img5.acsta.net/pictures/210/521/21052146_20131023144339759.jpg",
     lecture: true,
   },
   {
@@ -159,7 +161,8 @@ const films = [
     support: "DVD",
     badge: "Gratuit",
     gratuit: true,
-    image: "https://image.tmdb.org/t/p/w500/iB64vpL3dIObOtMZgX3RqmWdQD.jpg",
+    image:
+      "https://fr.web.img2.acsta.net/medias/nmedia/00/00/00/66/69199338_af.jpg",
     lecture: true,
   },
   {
@@ -218,6 +221,12 @@ const films = [
 
 const getFilmById = (id) => films.filter((f) => f.id === id)[0];
 
+const getGenres = () =>
+  films.flatMap((f) => f.genres).filter((v, i, arr) => arr.indexOf(v) === i);
+
+const getSupports = () =>
+  films.map((f) => f.support).filter((v, i, arr) => arr.indexOf(v) === i);
+
 const createMovieTile = (film) => {
   const { id, titre, badge, image } = film;
   const html = `
@@ -229,7 +238,7 @@ const createMovieTile = (film) => {
         <div class="media-info">
             <h3>${titre}</h3>
             <div class="card-actions">
-                <a href="#info-1" class="btn-infos">+ Infos</a>
+                <a href="#info-${id}" class="btn-infos">+ Infos</a>
                 <button class="btn-add-cart" onclick="ajouterFilmAuPanier(${id})">🛒</button>
             </div>
         </div>

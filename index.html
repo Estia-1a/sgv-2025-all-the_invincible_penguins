@@ -176,7 +176,37 @@
         </div>
 
         <div id="page-catalogue" style="display:none;">
-            <h2 class="page-title">Notre Catalogue Complet (16 Titres)</h2>
+            <h2 class="page-title" id="catalogue-title"></h2>
+            <script>
+                document.getElementById("catalogue-title").innerText = `Notre Catalogue Complet (${films.length} Titres)`;
+            </script>
+
+            <div class="filters">
+                <select class="filter" id="genre-filter" title="genre">
+                    <option value="">Filtrer par genre</option>
+                </select>
+                <script>
+                    const genreSelect = document.getElementById("genre-filter");
+                    
+                    for(const genre of getGenres()) {
+                        const option = document.createElement("option")
+                        option.innerText = genre;
+                        option.nodeValue = genre;
+                        genreSelect.appendChild(option)
+                    }
+                    
+                    genreSelect.addEventListener("change", (value) => {
+                        const genre = value.target.value;
+                        const catalogue = document.getElementById("catalogue");
+                        catalogue.innerHTML = '';
+                        let filteredFilms = films;
+                        if(genre !== "") {
+                            filteredFilms = films.filter((v) => v.genres.includes(genre));
+                        }
+                        addFullCatalog(filteredFilms, catalogue);
+                    })
+                </script>
+            </div>
 
             <div class="media-grid" id="catalogue"></div>
             <script>
