@@ -8,21 +8,21 @@ h1 { color: rgb(17, 69, 120); margin: 0; }
 .nav-links a { text-decoration: none; color: black; font-weight: bold; }
 .search-container input { padding: 8px; border: 2px solid black; }
 
-/* HERO (BANNIÈRE) */
-.hero {
+/* HERO */
+.hero { border: 2px solid black; padding: 60px 20px; margin: 20px 50px; text-align: center; background-color: #fff; }
+.btn-primary { background-color: #fff; color: black; padding: 10px 20px; border: 3px solid black; font-weight: bold; cursor: pointer; margin-top: 20px; box-shadow: 3px 3px 0px 0px rgba(0,0,0,1); }
+
+/* FILTRES (NOUVEAU) */
+.filters-section {
     border: 2px solid black;
-    padding: 60px 20px;
-    margin: 20px 50px;
-    text-align: center;
-    background-color: #fff;
+    padding: 15px;
+    margin: 0 50px 40px 50px; /* Marges alignées avec le hero */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
 }
-.btn-primary {
-    background-color: #fff;
-    color: black;
-    padding: 10px 20px;
-    border: 3px solid black;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
-}
+.filter-label { font-weight: bold; text-decoration: underline; }
+.filter-group { display: flex; gap: 10px; }
+.filter-group select, .filter-group input { padding: 5px; border: 2px solid black; }
+.btn-secondary { background: white; border: 2px solid black; font-weight: bold; cursor: pointer; padding: 5px 15px; }
