@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
     <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
 </head>
-<body>
+<body onload="chargerPanier()">
 
     <header>
         <div><h1>ManchoTV</h1></div>
@@ -19,7 +19,7 @@
             <li><a href="#" onclick="changerPage('page-accueil')">Accueil</a></li>
             <li><a href="#" onclick="changerPage('page-catalogue')">Catalogue</a></li>
             <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
-            <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
+            <li><a href="#" onclick="changerPage('page-panier')">Panier <span id="nav-panier-count" class="badge-count">0</span></a></li>
         </ul>
         <div class="search-container">
             <input type="text" placeholder="Rechercher...">
@@ -29,11 +29,10 @@
     <main>
 
         <div id="page-accueil" class="page-section">
-            
             <section class="hero">
                 <div class="hero-content">
                     <h2>À la une : La Marche de l'Empereur</h2>
-                    <p>Découvrez l'incroyable aventure des manchots en Antarctique.</p>
+                    <p>Découvrez l'incroyable aventure des manchots.</p>
                     <div class="hero-buttons">
                         <a href="#fiche-empereur" class="btn-secondary">ⓘ Plus d'infos</a>
                         <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
@@ -43,58 +42,40 @@
 
             <section class="filters-section">
                 <span class="filter-label">Trier par :</span>
-                <select><option>Nouveautés</option><option>Populaires</option></select>
-                <button class="btn-filter">Appliquer</button>
+                <select id="select-tri-accueil"><option value="new">Nouveautés</option><option value="pop">Populaires</option></select>
+                <button class="btn-filter" onclick="trierAccueil()">Appliquer</button>
             </section>
 
             <section class="recommendations">
                 <h2>Recommandés pour vous</h2>
-                <div class="media-grid">
-                    <div class="media-card">
-                        <a href="#fiche-empereur" class="media-visual-link">
-                            <div class="media-visual">
-                                <div class="media-placeholder">Img</div>
-                                <span class="badge-stream">Dispo. Streaming</span>
-                            </div>
-                        </a>
+                <div class="media-grid" id="grid-accueil">
+                    <div class="media-card" data-date="2005" data-pop="98">
+                        <a href="#fiche-empereur" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
                         <div class="media-info">
-                            <h3>La Marche de l'Empereur</h3>
-                            <p class="genre">Documentaire</p>
+                            <h3>La Marche de l'Empereur</h3><p class="genre">Docu</p>
                             <div class="card-actions">
-                                <a href="#fiche-empereur" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                                <button class="btn-add-cart">🛒 +</button>
+                                <a href="#fiche-empereur" class="btn-secondary">ⓘ Infos</a>
+                                <button class="btn-add-cart" onclick="ajouterAuPanier('La Marche de l\'Empereur', 9.99, 'DVD')">🛒 +</button>
                             </div>
                         </div>
                     </div>
-                    <div class="media-card">
-                        <a href="#fiche-interstellar" class="media-visual-link">
-                            <div class="media-visual">
-                                <div class="media-placeholder">Img</div>
-                                <span class="badge-stream">Dispo. Streaming</span>
-                            </div>
-                        </a>
+                    <div class="media-card" data-date="2014" data-pop="95">
+                        <a href="#fiche-interstellar" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
                         <div class="media-info">
-                            <h3>Interstellar</h3>
-                            <p class="genre">Sci-Fi</p>
+                            <h3>Interstellar</h3><p class="genre">Sci-Fi</p>
                             <div class="card-actions">
-                                <a href="#fiche-interstellar" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                                <button class="btn-add-cart">🛒 +</button>
+                                <a href="#fiche-interstellar" class="btn-secondary">ⓘ Infos</a>
+                                <button class="btn-add-cart" onclick="ajouterAuPanier('Interstellar', 15.00, 'Blu-Ray')">🛒 +</button>
                             </div>
                         </div>
                     </div>
-                    <div class="media-card">
-                        <a href="#fiche-stranger" class="media-visual-link">
-                            <div class="media-visual">
-                                <div class="media-placeholder">Img</div>
-                                <span class="badge-stream">Dispo. Streaming</span>
-                            </div>
-                        </a>
+                    <div class="media-card" data-date="2016" data-pop="90">
+                        <a href="#fiche-stranger" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
                         <div class="media-info">
-                            <h3>Stranger Things</h3>
-                            <p class="genre">Série</p>
+                            <h3>Stranger Things</h3><p class="genre">Série</p>
                             <div class="card-actions">
-                                <a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                                <button class="btn-add-cart">🛒 +</button>
+                                <a href="#fiche-stranger" class="btn-secondary">ⓘ Infos</a>
+                                <button class="btn-add-cart" onclick="ajouterAuPanier('Stranger Things S1', 20.00, 'DVD')">🛒 +</button>
                             </div>
                         </div>
                     </div>
@@ -104,117 +85,60 @@
 
         <div id="page-catalogue" class="page-section" style="display: none;">
             <h1 class="page-title">Catalogue Complet</h1>
-            
-            <section class="filters-section" style="margin-bottom: 40px; background-color: #eee;">
-                <span class="filter-label">Filtrer par Genre :</span>
+            <section class="filters-section" style="margin-bottom:40px; background:#eee;">
+                <span class="filter-label">Genre :</span>
                 <select id="select-genre">
-                    <option value="all">Tout montrer</option>
-                    <option value="action">Action / Aventure</option>
-                    <option value="animation">Animation</option>
-                    <option value="policier">Policier</option>
-                    <option value="scifi">Science-Fiction</option>
-                    <option value="serie">Séries TV</option>
+                    <option value="all">Tout</option><option value="action">Action</option><option value="animation">Animation</option><option value="policier">Policier</option><option value="scifi">Sci-Fi</option><option value="serie">Série</option>
                 </select>
-                <button class="btn-filter" onclick="filtrerCatalogue()" style="background:black; color:white;">Rechercher</button>
+                <button class="btn-filter" onclick="filtrerCatalogue()" style="background:black; color:white;">Filtrer</button>
             </section>
             
             <div class="media-grid" id="catalogue-grid">
-                
                 <div class="media-card" data-genre="action">
-                    <a href="#fiche-avengers" class="media-visual-link">
-                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    </a>
-                    <div class="media-info">
-                        <h3>Avengers: Endgame</h3>
-                        <p class="genre">Action</p>
-                        <p class="price">Blu-Ray 4K : 25.00€</p>
-                        <div class="card-actions"><a href="#fiche-avengers" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
-                    </div>
+                    <a href="#fiche-avengers" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
+                    <div class="media-info"><h3>Avengers: Endgame</h3><p class="genre">Action</p><p class="price">25.00€</p>
+                    <div class="card-actions"><a href="#fiche-avengers" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Avengers: Endgame', 25.00, 'Blu-Ray 4K')">🛒 +</button></div></div>
                 </div>
-
                 <div class="media-card" data-genre="animation">
-                    <a href="#fiche-roilion" class="media-visual-link">
-                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    </a>
-                    <div class="media-info">
-                        <h3>Le Roi Lion</h3>
-                        <p class="genre">Animation</p>
-                        <p class="price">DVD : 15.00€</p>
-                        <div class="card-actions"><a href="#fiche-roilion" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
-                    </div>
+                    <a href="#fiche-roilion" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
+                    <div class="media-info"><h3>Le Roi Lion</h3><p class="genre">Animation</p><p class="price">15.00€</p>
+                    <div class="card-actions"><a href="#fiche-roilion" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Le Roi Lion', 15.00, 'DVD')">🛒 +</button></div></div>
                 </div>
-
                 <div class="media-card" data-genre="policier">
-                    <a href="#fiche-parrain" class="media-visual-link">
-                        <div class="media-visual"><div class="media-placeholder">Img</div></div>
-                    </a>
-                    <div class="media-info">
-                        <h3>Coffret Le Parrain</h3>
-                        <p class="genre">Policier</p>
-                        <p class="price">Coffret : 35.00€</p>
-                        <div class="card-actions"><a href="#fiche-parrain" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
+                    <a href="#fiche-parrain" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
+                    <div class="media-info"><h3>Coffret Le Parrain</h3><p class="genre">Policier</p><p class="price">35.00€</p>
+                    <div class="card-actions"><a href="#fiche-parrain" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Coffret Le Parrain', 35.00, 'Coffret')">🛒 +</button></div></div>
                 </div>
-
                 <div class="media-card" data-genre="serie">
-                    <a href="#fiche-stranger" class="media-visual-link">
-                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    </a>
-                    <div class="media-info">
-                        <h3>Stranger Things S1</h3>
-                        <p class="genre">Série</p>
-                        <p class="price">DVD : 20.00€</p>
-                        <div class="card-actions"><a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
-                    </div>
+                    <a href="#fiche-stranger" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
+                    <div class="media-info"><h3>Stranger Things S1</h3><p class="genre">Série</p><p class="price">20.00€</p>
+                    <div class="card-actions"><a href="#fiche-stranger" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Stranger Things S1', 20.00, 'DVD')">🛒 +</button></div></div>
                 </div>
             </div>
-            
-            <div id="suite-catalogue" class="media-grid" style="display: none; margin-top: 30px;">
-                
+
+            <div id="suite-catalogue" class="media-grid" style="display:none; margin-top:30px;">
                 <div class="media-card" data-genre="scifi">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    <div class="media-info">
-                        <h3>Jurassic Park</h3>
-                        <p class="genre">Science-Fiction</p>
-                        <p class="price">Blu-Ray : 12.00€</p>
-                        <div class="card-actions"><a href="#lecteur-video" class="btn-watch">▶ Lecture</a><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
+                    <a href="#fiche-jurassic" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
+                    <div class="media-info"><h3>Jurassic Park</h3><p class="genre">Sci-Fi</p><p class="price">12.00€</p>
+                    <div class="card-actions"><a href="#fiche-jurassic" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Jurassic Park', 12.00, 'Blu-Ray')">🛒 +</button></div></div>
                 </div>
-
                 <div class="media-card" data-genre="animation">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    <div class="media-info">
-                        <h3>Toy Story 4</h3>
-                        <p class="genre">Animation</p>
-                        <p class="price">DVD : 18.00€</p>
-                        <div class="card-actions"><a href="#lecteur-video" class="btn-watch">▶ Lecture</a><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
+                    <a href="#fiche-toystory" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
+                    <div class="media-info"><h3>Toy Story 4</h3><p class="genre">Animation</p><p class="price">18.00€</p>
+                    <div class="card-actions"><a href="#fiche-toystory" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Toy Story 4', 18.00, 'DVD')">🛒 +</button></div></div>
                 </div>
-                
                 <div class="media-card" data-genre="action">
-                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
-                    <div class="media-info">
-                        <h3>The Dark Knight</h3>
-                        <p class="genre">Action / Policier</p>
-                        <p class="price">Blu-Ray 4K : 22.00€</p>
-                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Indisponible</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
+                    <a href="#fiche-darkknight" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
+                    <div class="media-info"><h3>The Dark Knight</h3><p class="genre">Action</p><p class="price">22.00€</p>
+                    <div class="card-actions"><a href="#fiche-darkknight" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('The Dark Knight', 22.00, 'Blu-Ray 4K')">🛒 +</button></div></div>
                 </div>
-
                 <div class="media-card" data-genre="serie">
-                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
-                    <div class="media-info">
-                        <h3>Breaking Bad</h3>
-                        <p class="genre">Série</p>
-                        <p class="price">Coffret : 80.00€</p>
-                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Indisponible</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
+                    <a href="#fiche-breakingbad" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
+                    <div class="media-info"><h3>Breaking Bad</h3><p class="genre">Série</p><p class="price">80.00€</p>
+                    <div class="card-actions"><a href="#fiche-breakingbad" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Breaking Bad', 80.00, 'Coffret')">🛒 +</button></div></div>
                 </div>
             </div>
-
-            <div style="text-align:center; margin-top:30px;">
-                <button id="btn-load-more" class="btn-secondary" onclick="voirLaSuite()">Voir la suite &rarr;</button>
-            </div>
+            <div style="text-align:center; margin-top:30px;"><button id="btn-load-more" class="btn-secondary" onclick="voirLaSuite()">Voir la suite &rarr;</button></div>
         </div>
 
         <div id="page-profil" class="page-section" style="display: none;">
@@ -222,49 +146,36 @@
             <div class="profile-container">
                 <div class="profile-card">
                     <h2>Mes Infos</h2>
-                    <div class="profile-header">
-                        <div class="avatar-circle">J</div>
-                        <div>
-                            <h3>Jean Dupont</h3>
-                            <p>Cinéphile depuis 2024</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <p><strong>Email :</strong> jean.dupont@ecole.fr</p>
+                    <div class="profile-header"><div class="avatar-circle">J</div><div><h3>Jean Dupont</h3><p>Cinéphile</p></div></div>
                     <p><strong>Abonnement :</strong> Manchot+ (Actif)</p>
-                </div>
-                <div class="profile-card">
-                    <h2>Mes commandes physiques</h2>
-                    <ul class="order-list">
-                        <li style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                            <span>Coffret Harry Potter</span>
-                            <span style="color:green; font-weight:bold;">Livré</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
 
         <div id="page-panier" class="page-section" style="display: none;">
-            <h1 class="page-title">Votre panier (Livraison)</h1>
+            <h1 class="page-title">Votre panier</h1>
             <div class="cart-container">
+                
                 <section class="cart-items-section">
-                    <div class="cart-item">
-                        <div class="item-visual"><p>La Marche de l'Empereur</p></div>
-                        <span class="item-info">Blu-Ray 4K</span>
-                        <div class="item-quantity">Qté : <input type="number" value="1" style="width:40px;"></div>
-                        <span class="item-price">24,99 €</span>
-                        <button class="btn-delete" style="color:red; background:white; border:1px solid red;">Supprimer</button>
+                    <div id="cart-list-container">
+                        <p style="text-align:center; padding:20px;">Votre panier est vide.</p>
                     </div>
                 </section>
+
                 <aside class="cart-summary-section">
                     <div class="summary-box">
-                        <h3>Résumé</h3>
-                        <p>Sous-total : 24,99 €</p>
-                        <p>Livraison : 3,00 €</p>
+                        <h3>Total Commande</h3>
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>Sous-total :</span> <span id="cart-subtotal">0.00 €</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>Livraison :</span> <span>3.00 €</span>
+                        </div>
                         <hr>
-                        <p class="total-price">Total : 27,99 €</p>
-                        <button class="btn-validate">Valider la commande</button>
+                        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem; margin:10px 0;">
+                            <span>Total :</span> <span id="cart-total">0.00 €</span>
+                        </div>
+                        <button class="btn-validate" onclick="ouvrirPaiement()">Passer au paiement</button>
                     </div>
                 </aside>
             </div>
@@ -272,129 +183,188 @@
 
     </main>
 
-    <div id="fiche-empereur" class="modal-overlay">
-        <div class="modal-content">
+    <div id="modal-paiement" class="modal-overlay">
+        <div class="modal-content" style="max-width:400px;">
             <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#eee;"><h2>La Marche de l'Empereur</h2></div>
-            <div class="modal-body">
-                <div class="meta-data"><span style="color:green;font-weight:bold;">98% Match</span> | 2005 | 1h25</div>
-                <p class="description">L'histoire des manchots empereurs.</p>
-                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter DVD</button></div>
+            <div class="modal-header" style="background:#111; color:white; height:80px; align-items:center;">
+                <h2>Paiement Sécurisé</h2>
             </div>
-        </div>
-    </div>
-    <div id="fiche-interstellar" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#333; color:white;"><h2>Interstellar</h2></div>
             <div class="modal-body">
-                <div class="meta-data"><span style="color:green;font-weight:bold;">95% Match</span> | 2014 | 2h49</div>
-                <p class="description">Un voyage à travers l'espace et le temps.</p>
-                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter Blu-Ray</button></div>
-            </div>
-        </div>
-    </div>
-    <div id="fiche-stranger" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#a00; color:white;"><h2>Stranger Things</h2></div>
-            <div class="modal-body">
-                <div class="meta-data"><span style="color:green;font-weight:bold;">Top 10 Séries</span> | 2016 | 16+</div>
-                <p class="description">À Hawkins, un jeune garçon disparaît.</p>
-                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Voir Épisode 1</a><button class="btn-add-cart">🛒 Coffret DVD</button></div>
-            </div>
-        </div>
-    </div>
-    <div id="fiche-avengers" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#4b0082; color:white;"><h2>Avengers: Endgame</h2></div>
-            <div class="modal-body">
-                <div class="meta-data"><span style="color:green;font-weight:bold;">99% Match</span> | 2019 | 3h01</div>
-                <p class="description">Les Avengers rassemblent leurs forces.</p>
-                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter Blu-Ray</button></div>
-            </div>
-        </div>
-    </div>
-    <div id="fiche-roilion" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#e67e22; color:white;"><h2>Le Roi Lion</h2></div>
-            <div class="modal-body">
-                <div class="meta-data"><span style="color:green;font-weight:bold;">Classique</span> | 1994 | 1h28</div>
-                <p class="description">Le jeune lion Simba doit reprendre sa place.</p>
-                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter DVD</button></div>
-            </div>
-        </div>
-    </div>
-    <div id="fiche-parrain" class="modal-overlay">
-        <div class="modal-content">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#000; color:white;"><h2>Le Parrain</h2></div>
-            <div class="modal-body">
-                <div class="meta-data"><span style="color:gray;font-weight:bold;">Indisponible en Stream</span> | 1972 | 2h55</div>
-                <p class="description">Le patriarche vieillissant d'une dynastie de la mafia.</p>
-                <div class="modal-actions"><button class="btn-watch" disabled style="opacity:0.5; cursor:not-allowed">Indisponible</button><button class="btn-add-cart">🛒 Acheter Coffret</button></div>
+                <form onsubmit="event.preventDefault(); validerPaiement();">
+                    <label style="font-weight:bold;">Numéro de carte</label>
+                    <input type="text" placeholder="0000 0000 0000 0000" required style="width:100%; padding:10px; margin-bottom:10px;">
+                    
+                    <div style="display:flex; gap:10px;">
+                        <div style="flex:1">
+                            <label style="font-weight:bold;">Exp.</label>
+                            <input type="text" placeholder="MM/AA" required style="width:100%; padding:10px; margin-bottom:10px;">
+                        </div>
+                        <div style="flex:1">
+                            <label style="font-weight:bold;">CVV</label>
+                            <input type="text" placeholder="123" required style="width:100%; padding:10px; margin-bottom:10px;">
+                        </div>
+                    </div>
+                    
+                    <label style="font-weight:bold;">Nom du titulaire</label>
+                    <input type="text" placeholder="Jean Dupont" required style="width:100%; padding:10px; margin-bottom:20px;">
+                    
+                    <button type="submit" class="btn-watch" style="width:100%;">Payer maintenant</button>
+                </form>
             </div>
         </div>
     </div>
 
+    <div id="fiche-empereur" class="modal-overlay"><div class="modal-content"><a href="#" class="close-modal">&times;</a><div class="modal-header" style="background:#eee;"><h2>La Marche de l'Empereur</h2></div><div class="modal-body"><p>Docu - 2005</p><div class="modal-actions"><a href="#lecteur-video" class="btn-watch">Lecture</a><button class="btn-add-cart" onclick="ajouterAuPanier('La Marche de l\'Empereur', 9.99, 'DVD')">Ajouter DVD</button></div></div></div></div>
+    <div id="fiche-interstellar" class="modal-overlay"><div class="modal-content"><a href="#" class="close-modal">&times;</a><div class="modal-header" style="background:#333;color:white"><h2>Interstellar</h2></div><div class="modal-body"><p>Sci-Fi - 2014</p><div class="modal-actions"><a href="#lecteur-video" class="btn-watch">Lecture</a><button class="btn-add-cart" onclick="ajouterAuPanier('Interstellar', 15.00, 'Blu-Ray')">Ajouter Blu-Ray</button></div></div></div></div>
     <div id="lecteur-video" class="video-overlay">
         <div class="video-container">
-            <a href="#" class="close-btn">&times; Fermer la vidéo</a>
-            <video controls width="100%">
-                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-            </video>
+            <a href="#" class="close-btn">&times; Fermer</a>
+            <video controls width="100%"><source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Manchot TV - Projet Scolaire</p>
-    </footer>
+    <footer><p>© 2026 Manchot TV</p></footer>
 
     <script>
-        // 1. FONCTION DE NAVIGATION (Onglets)
-        function changerPage(idPageVoulue) {
-            const pages = ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'];
-            pages.forEach(id => {
-                const el = document.getElementById(id);
-                if(el) el.style.display = 'none';
-            });
-            const page = document.getElementById(idPageVoulue);
-            if(page) page.style.display = 'block';
+        // --- 1. GESTION DU PANIER ---
+        
+        // On récupère le panier stocké dans le navigateur, ou on crée une liste vide
+        let monPanier = JSON.parse(localStorage.getItem('panierManchot')) || [];
+
+        // Fonction pour ajouter un article
+        function ajouterAuPanier(titre, prix, type) {
+            // Création de l'objet article
+            const article = {
+                titre: titre,
+                prix: prix,
+                type: type,
+                qte: 1
+            };
+
+            // Ajout au tableau
+            monPanier.push(article);
+            
+            // Sauvegarde dans le navigateur
+            sauvegarderPanier();
+            
+            // Mise à jour de l'affichage
+            afficherPanier();
+            
+            // Petit message de confirmation
+            alert(titre + " a été ajouté au panier !");
         }
 
-        // 2. FONCTION DE FILTRAGE DU CATALOGUE
-        function filtrerCatalogue() {
-            // On récupère le genre choisi dans le menu
-            const genreChoisi = document.getElementById('select-genre').value;
-            // On récupère toutes les cartes de films (visibles et cachées)
-            const toutesLesCartes = document.querySelectorAll('.media-card');
+        // Fonction pour sauvegarder
+        function sauvegarderPanier() {
+            localStorage.setItem('panierManchot', JSON.stringify(monPanier));
+            updateCompteur();
+        }
 
-            toutesLesCartes.forEach(carte => {
-                // On lit l'étiquette 'data-genre' sur la carte
-                const genreCarte = carte.getAttribute('data-genre');
-                
-                // Si 'all' est choisi ou si le genre correspond
-                if (genreChoisi === 'all' || genreCarte === genreChoisi) {
-                    carte.parentElement.style.display = 'flex'; // Assure que la grille s'affiche
-                    carte.style.display = 'block'; // Affiche la carte
-                } else {
-                    carte.style.display = 'none'; // Cache la carte
+        // Fonction pour afficher le nombre d'articles dans le menu
+        function updateCompteur() {
+            document.getElementById('nav-panier-count').textContent = monPanier.length;
+        }
+
+        // Fonction pour générer le HTML du panier
+        function afficherPanier() {
+            const container = document.getElementById('cart-list-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            // Si panier vide
+            if (monPanier.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:20px;">Votre panier est vide.</p>';
+                subtotalEl.textContent = "0.00 €";
+                totalEl.textContent = "0.00 €";
+                return;
+            }
+
+            // Sinon, on construit la liste
+            let html = '';
+            let total = 0;
+
+            monPanier.forEach((item, index) => {
+                total += item.prix;
+                html += `
+                    <div class="cart-item">
+                        <div class="item-visual" style="width:50%; font-weight:bold;">${item.titre}</div>
+                        <span class="item-info">${item.type}</span>
+                        <span class="item-price">${item.prix.toFixed(2)} €</span>
+                        <button class="btn-delete" onclick="supprimerArticle(${index})" style="color:red; border:1px solid red; background:white; cursor:pointer;">X</button>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            
+            // Calculs finaux
+            subtotalEl.textContent = total.toFixed(2) + " €";
+            const totalAvecLivraison = total + 3.00;
+            totalEl.textContent = totalAvecLivraison.toFixed(2) + " €";
+            
+            updateCompteur();
+        }
+
+        // Fonction pour supprimer un article
+        function supprimerArticle(index) {
+            monPanier.splice(index, 1); // Enlève 1 élément à l'index donné
+            sauvegarderPanier();
+            afficherPanier();
+        }
+
+        // Fonction appelée au chargement de la page (onload dans <body>)
+        function chargerPanier() {
+            afficherPanier();
+            updateCompteur();
+        }
+
+        // --- 2. PAIEMENT ---
+        function ouvrirPaiement() {
+            if(monPanier.length === 0) {
+                alert("Votre panier est vide !");
+                return;
+            }
+            // Affiche la fenêtre modale de paiement (via CSS target ou modif style)
+            // Ici on utilise une petite astuce JS pour changer l'URL sans recharger
+            window.location.hash = "modal-paiement";
+        }
+
+        function validerPaiement() {
+            alert("Paiement accepté ! Merci pour votre commande.");
+            // On vide le panier
+            monPanier = [];
+            sauvegarderPanier();
+            afficherPanier();
+            // On ferme la fenêtre (retour à une ancre vide)
+            window.location.hash = "#";
+            // On retourne à l'accueil
+            changerPage('page-accueil');
+        }
+
+        // --- 3. NAVIGATION & FILTRES (Déjà existants) ---
+        function changerPage(id) {
+            ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'].forEach(p => {
+                document.getElementById(p).style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+        function voirLaSuite() { document.getElementById('suite-catalogue').style.display = 'flex'; document.getElementById('btn-load-more').style.display='none'; }
+        function filtrerCatalogue() {
+            const genre = document.getElementById('select-genre').value;
+            document.querySelectorAll('.media-card').forEach(c => {
+                if(c.hasAttribute('data-genre')) {
+                    c.style.display = (genre === 'all' || c.getAttribute('data-genre') === genre) ? 'block' : 'none';
+                    if(c.style.display === 'block') c.parentElement.style.display = 'flex';
                 }
             });
-
-            // Si on filtre, on force l'affichage de la "suite" pour ne pas rater de films
-            document.getElementById('suite-catalogue').style.display = 'flex';
-            document.getElementById('btn-load-more').style.display = 'none';
+            voirLaSuite();
         }
-
-        // 3. FONCTION "VOIR LA SUITE"
-        function voirLaSuite() {
-            // Affiche la deuxième grille de films
-            document.getElementById('suite-catalogue').style.display = 'flex';
-            // Cache le bouton
-            document.getElementById('btn-load-more').style.display = 'none';
+        function trierAccueil() {
+            const critere = document.getElementById('select-tri-accueil').value;
+            const container = document.getElementById('grid-accueil');
+            const cards = Array.from(container.getElementsByClassName('media-card'));
+            cards.sort((a, b) => parseInt(b.getAttribute(critere==='new'?'data-date':'data-pop')) - parseInt(a.getAttribute(critere==='new'?'data-date':'data-pop')));
+            cards.forEach(c => container.appendChild(c));
         }
     </script>
 </body>
