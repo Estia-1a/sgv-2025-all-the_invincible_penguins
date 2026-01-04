@@ -3,62 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchot TV - Final</title>
-    <link rel="stylesheet" href="styles/desktop.css">
+    <title>Manchot TV - Streaming & Store</title>
+    
+    <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
     <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
 </head>
 <body>
+
     <header>
         <div><h1>ManchoTV</h1></div>
     </header>
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#">Accueil</a></li>
+            <li><a href="#" onclick="montrerAccueil()">Accueil</a></li>
             <li><a href="#">Catalogue</a></li>
             <li><a href="#">Catégories</a></li>
             <li><a href="#">Recommandés</a></li>
             <li><a href="#">Profil</a></li>
-            <li><a href="#">Panier</a></li>
+            <li><a href="#" onclick="montrerPanier()">Panier</a></li>
         </ul>
         <div class="search-container">
-            <input type="text" placeholder="Rechercher un média...">
+            <input type="text" placeholder="Rechercher un film, un livre...">
         </div>
     </nav>
 
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Bannière nouveautés / médias à la une</h2>
-                <button class="btn-primary">Voir le catalogue</button>
-            </div>
-        </section>
 
-        <section class="filters-section">
-            <span class="filter-label">Filtres avancés :</span>
-            <div class="filter-group">
-                <select><option>Catégorie</option></select>
-                <select><option>Format (vidéo...)</option></select>
-                <select><option>Prix</option></select>
-                <input type="text" placeholder="Mots-clés">
-                <button class="btn-secondary">Appliquer</button>
-            </div>
-        </section>
+        <div id="page-accueil">
+            
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>À la une : La Marche de l'Empereur</h2>
+                    <p>Disponible en Streaming 4K ou en Blu-Ray Collector</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">▶ Regarder (Streaming)</button>
+                        <button class="btn-secondary">🛒 Acheter (Livraison)</button>
+                    </div>
+                </div>
+            </section>
 
-        <section class="recommendations">
-            <h2>Recommandés pour vous</h2>
-            <div class="media-grid">
-                <div class="media-card"><div class="media-placeholder">X</div><p>Titre du média</p></div>
-                <div class="media-card"><div class="media-placeholder">X</div><p>Titre du média</p></div>
-                <div class="media-card"><div class="media-placeholder">X</div><p>Titre du média</p></div>
-                <div class="media-card"><div class="media-placeholder">X</div><p>Titre du média</p></div>
-                <div class="arrow-next">➜</div>
+            <section class="filters-section">
+                <span class="filter-label">Trier par :</span>
+                <div class="filter-group">
+                    <select><option>Genre (Docu, Film...)</option></select>
+                    <select><option>Format (Streaming, DVD, Livre)</option></select>
+                    <select><option>Prix croissant</option></select>
+                    <input type="text" placeholder="Mots-clés (ex: Pôle Sud)">
+                    <button class="btn-filter">Appliquer</button>
+                </div>
+            </section>
+
+            <section class="recommendations">
+                <h2>Recommandés pour vous (basé sur vos favoris)</h2>
+                
+                <div class="media-grid">
+                    
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Dispo. Streaming</span>
+                        </div>
+                        <div class="media-info">
+                            <h3>La Marche de l'Empereur</h3>
+                            <p class="genre">Documentaire</p>
+                            <p class="price">DVD : 15.99€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch" title="Accès direct">▶ Lecture</button>
+                                <button class="btn-add-cart" title="Commander en livraison">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Dispo. Streaming</span>
+                        </div>
+                        <div class="media-info">
+                            <h3>Happy Feet</h3>
+                            <p class="genre">Animation / Jeunesse</p>
+                            <p class="price">Blu-Ray : 19.99€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch">▶ Lecture</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            </div>
+                        <div class="media-info">
+                            <h3>Vie Sauvage (Livre)</h3>
+                            <p class="genre">Livre Photos</p>
+                            <p class="price">Livre : 25.50€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch" disabled style="background:#ccc; cursor:not-allowed">Indisponible</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Dispo. Streaming</span>
+                        </div>
+                        <div class="media-info">
+                            <h3>L'Antarctique</h3>
+                            <p class="genre">Reportage</p>
+                            <p class="price">DVD : 9.99€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch">▶ Lecture</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <div id="page-panier" style="display: none;">
+            <h1 class="page-title">Votre panier (Livraison)</h1>
+            <div class="cart-container">
+                
+                <section class="cart-items-section">
+                    <div class="cart-header-row">
+                        <span>Article</span>
+                        <span>Type</span>
+                        <span>Qté</span>
+                        <span>Prix</span>
+                        <span>Action</span>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="item-visual">
+                            <div class="img-placeholder">Img</div>
+                            <p>La Marche de l'Empereur</p>
+                        </div>
+                        <span class="item-info">DVD</span>
+                        <div class="item-quantity"><input type="number" value="1"></div>
+                        <span class="item-price">15,99 €</span>
+                        <button class="btn-delete">Supprimer</button>
+                    </div>
+                </section>
+
+                <aside class="cart-summary-section">
+                    <div class="summary-box">
+                        <h3>Résumé de la commande :</h3>
+                        <p>Sous-total : 15,99 €</p>
+                        <p>Livraison : 3,00 €</p>
+                        <hr>
+                        <p class="total-price">Total : 18,99 €</p>
+                        <button class="btn-validate">Valider la commande</button>
+                    </div>
+                </aside>
             </div>
-        </section>
+        </div>
+
     </main>
 
     <footer>
         <p>FAQ , CGV , Contact , Mentions légales</p>
     </footer>
+
+    <script>
+        function montrerPanier() {
+            document.getElementById('page-accueil').style.display = 'none';
+            document.getElementById('page-panier').style.display = 'block';
+        }
+
+        function montrerAccueil() {
+            document.getElementById('page-panier').style.display = 'none';
+            document.getElementById('page-accueil').style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>
