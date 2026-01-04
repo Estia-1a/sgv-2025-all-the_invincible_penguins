@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="styles/cart.css">
 </head>
 <body onload="chargerPanier()">
-    <script src="./data.js"></script>
-    <script src="./cart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
 
     <header>
         <div class="header-inner">
@@ -43,14 +43,14 @@
                 </div>
             </div>
 
-            <h2 style="margin-bottom:20px;">Recommandés pour vous</h2>
+            <h2 class="recommendations-title">Recommandés pour vous</h2>
             <div class="media-grid" id="recommendations"></div>
             <script>
                 addFullCatalog(films.slice(0, 3), document.getElementById("recommendations"))
             </script>
             
-            <div style="text-align:center; margin-top:40px;">
-                <button onclick="changerPage('catalogue')" class="btn-play" style="padding:15px 40px;">Voir tout le catalogue &rarr;</button>
+            <div class="recommendations-gocatalog">
+                <button onclick="changerPage('catalogue')" class="btn-play">Voir tout le catalogue &rarr;</button>
             </div>
         </div>
 
@@ -100,9 +100,9 @@
 
     <!--        PANIER          -->
     <div id="page-panier" class="modal-overlay">
-        <div class="modal-box small-box">
+        <div class="modal-box small-box .cart">
             <a href="#" class="close-cross">&times;</a>
-            <h2 style="text-align:center;">Votre Panier</h2>
+            <h2>Votre Panier</h2>
             <div id="cart-list-container">
                 <p>Panier vide.</p>
             </div>
@@ -120,28 +120,28 @@
                 <span id="shippment-cost">-,--€</span>
             </div>
             <hr>
-            <div style="text-align:right; font-weight:bold; margin:10px 0;">Total : <span id="cart-total">0.00 €</span></div>
+            <div class="total">Total : <span id="cart-total">0.00 €</span></div>
             <a href="#modal-paiement" class="proccess-to-payment">Passer au paiement</a>
         </div>
     </div>
 
     <div id="modal-paiement" class="modal-overlay">
-        <div class="modal-box small-box" style="text-align:center;">
+        <div class="modal-box small-box payment">
             <a href="#" class="close-cross">&times;</a>
             <h2>Paiement Sécurisé</h2>
             <p>Entrez vos coordonnées (Simulation)</p>
-            <input type="text" placeholder="Numéro CB" style="width:100%; padding:10px; margin:5px 0;">
-            <input type="text" placeholder="MM/AA" style="width:48%; padding:10px; margin:5px 0;">
-            <input type="text" placeholder="CVC" style="width:48%; padding:10px; margin:5px 0;">
-            <button onclick="validerPaiementJS()" class="btn-play" style="width:100%; margin-top:15px;">Confirmer et Payer</button>
+            <input class="numero" type="text" placeholder="Numéro CB">
+            <input class="expiration" type="text" placeholder="MM/AA">
+            <input class="cvc" type="text" placeholder="CVC">
+            <button onclick="validerPaiementJS()" class="btn-play submit">Confirmer et Payer</button>
         </div>
     </div>
 
     <div id="page-profil" class="modal-overlay">
-        <div class="modal-box small-box" style="text-align:center;">
+        <div class="modal-box small-box .profile">
             <a href="#" class="close-cross">&times;</a>
-            <h2>Mon Profil</h2>
-            <div style="width:80px; height:80px; background:rgb(5,141,171); color:white; font-size:2rem; border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 15px auto;">J</div>
+            <h2 class="picture">Mon Profil</h2>
+            <div>J</div>
             <h3>Jean Dupont</h3>
             <p>Accès : Visiteur</p>
         </div>

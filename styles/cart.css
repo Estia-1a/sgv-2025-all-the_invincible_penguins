@@ -41,3 +41,13 @@
     background: #27ae60;
     transform: scale(1.1);
 }
+
+.cart {
+    text-align: center;
+}
+
+.cart>.total {
+    text-align: right;
+    font-weight: bold;
+    margin: 10px 0;
+}

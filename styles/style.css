@@ -492,3 +492,60 @@ video {
         font-size: 2rem;
     }
 }
+
+.payment>.numero {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.payment {
+    text-align: center;
+}
+
+.payment>.expiration {
+    width: 48%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.payment>.cvc {
+    width: 48%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.payment>.submit {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile>.picture {
+    width: 80px;
+    height: 80px;
+    background: rgb(5, 141, 171);
+    color: white;
+    font-size: 2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+}
+
+.recommendations-title {
+    margin-bottom: 20px;
+}
+
+.recommendations-gocatalog {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.recommendations-gocatalog>button {
+    padding: 15px 40px;
+}
