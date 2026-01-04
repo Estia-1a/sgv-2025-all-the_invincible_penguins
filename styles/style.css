@@ -1,0 +1,494 @@
+/* --- RESET & BASE --- */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* --- HEADER --- */
+header {
+    background: rgb(5, 141, 171);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: white;
+    margin: 0;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 60px;
+    background: white;
+    border-bottom: 2px solid rgb(5, 141, 171);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    color: #333;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.nav-links a:hover {
+    color: rgb(5, 141, 171);
+}
+
+.badge-count {
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    vertical-align: top;
+    margin-left: 5px;
+}
+
+.search-container input {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+/* --- SECTION : ACCUEIL (HERO) --- */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://proxymedia.woopic.com/api/v1/images/331%2FLAMARCHEDELW0136882_BAN1_2424_NEWTV_HD.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-bottom: 40px;
+    margin-right: 50px;
+}
+
+.btn-hero {
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.btn-hero:hover {
+    transform: scale(1.05);
+}
+
+.btn-white {
+    background: white;
+    color: #333;
+}
+
+.btn-blue {
+    background: rgb(5, 141, 171);
+    color: white;
+}
+
+/* --- SECTION : CATALOGUE --- */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 800px;
+}
+
+.page-title {
+    text-align: center;
+    color: rgb(17, 69, 120);
+    margin-bottom: 40px;
+    font-size: 2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Grille */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* Carte */
+.media-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.media-visual {
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+.media-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.media-card:hover .media-visual img {
+    transform: scale(1.05);
+}
+
+/* Badges */
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hd {
+    background: rgb(17, 69, 120);
+}
+
+.free {
+    background: #27ae60;
+}
+
+/* Infos Carte */
+.media-info {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.media-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    color: rgb(17, 69, 120);
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-infos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 3;
+    background: white;
+    color: rgb(5, 141, 171);
+    border: 2px solid rgb(5, 141, 171);
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn-infos:hover {
+    background: rgb(5, 141, 171);
+    color: white;
+}
+
+.btn-add-cart {
+    flex: 1;
+    /* background: #2ecc71; */
+    border: #27ae60 2px solid;
+    background-color: transparent;
+    color: white;
+    /* border: none; */
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
+
+.btn-add-cart:hover {
+    background: #27ae60;
+    transform: scale(1.1);
+}
+
+/* --- FENÊTRES MODALES (INFOS) --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay:target {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-box {
+    background: white;
+    width: 800px;
+    max-width: 95%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.small-box {
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.close-cross {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #333;
+    line-height: 0.8;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.close-cross:hover {
+    color: #e74c3c;
+}
+
+.modal-flex {
+    display: flex;
+}
+
+.modal-poster {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+}
+
+.modal-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px 0;
+    color: rgb(17, 69, 120);
+    font-size: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.meta-tags .tag {
+    display: inline-block;
+    background: #eee;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #555;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.synopsis {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    flex-grow: 1;
+    margin: 20px 0;
+}
+
+.actions-area {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-play {
+    flex: 2;
+    background: rgb(17, 69, 120);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background 0.3s;
+}
+
+.btn-play:hover {
+    background: rgb(10, 45, 80);
+}
+
+.btn-play.free {
+    background: #27ae60;
+}
+
+.btn-buy {
+    flex: 1;
+    background: white;
+    color: #333;
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- LECTEUR VIDEO --- */
+.video-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-overlay:target {
+    display: flex;
+}
+
+.video-box {
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.close-video {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+video {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .modal-flex {
+        flex-direction: column;
+    }
+
+    .modal-poster {
+        width: 100%;
+        height: 200px;
+    }
+
+    .modal-box {
+        height: 90vh;
+        overflow-y: auto;
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+}
