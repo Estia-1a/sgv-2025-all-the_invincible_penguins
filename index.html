@@ -117,6 +117,7 @@
 </head>
 <body onload="chargerPanier()">
     <script src="./data.js"></script>
+    <script src="./cart.js"></script>
 
     <header>
         <div class="header-inner">
@@ -151,8 +152,8 @@
             </div>
 
             <h2 style="margin-bottom:20px;">Recommandés pour vous</h2>
-            <div class="media-grid">
-                <div class="media-card">
+            <div class="media-grid" id="recommendations">
+                <!-- <div class="media-card">
                     <div class="media-visual"><span class="badge free">Gratuit</span><img src="https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPMPZwt586.jpg"></div>
                     <div class="media-info"><h3>Le Roi Lion</h3><div class="card-actions"><a href="#info-3" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Roi Lion', 15, 'DVD')">🛒</button></div></div>
                 </div>
@@ -163,8 +164,11 @@
                 <div class="media-card">
                     <div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"></div>
                     <div class="media-info"><h3>Inception</h3><div class="card-actions"><a href="#info-8" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Inception', 15, 'BR')">🛒</button></div></div>
-                </div>
+                </div> -->
             </div>
+            <script>
+                addFullCatalog(films.slice(0, 3), document.getElementById("recommendations"))
+            </script>
             
             <div style="text-align:center; margin-top:40px;">
                 <button onclick="changerPage('catalogue')" class="btn-play" style="padding:15px 40px;">Voir tout le catalogue &rarr;</button>
@@ -249,7 +253,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         let monPanier = JSON.parse(localStorage.getItem('panierManchot')) || [];
 
         function changerPage(nomPage) {
@@ -307,7 +311,7 @@
         window.onload = function() { 
             afficherPanier(); 
         };
-    </script>
+    </script> -->
 
 </body>
 </html>

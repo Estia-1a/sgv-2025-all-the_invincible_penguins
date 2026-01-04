@@ -216,6 +216,8 @@ const films = [
   },
 ];
 
+const getFilmById = (id) => films.filter((f) => f.id === id)[0];
+
 const createMovieTile = (film) => {
   const { id, titre, badge, image } = film;
   const html = `
@@ -228,7 +230,7 @@ const createMovieTile = (film) => {
             <h3>${titre}</h3>
             <div class="card-actions">
                 <a href="#info-1" class="btn-infos">+ Infos</a>
-                <button class="btn-add-cart" onclick="ajouterAuPanier(${id})">🛒</button>
+                <button class="btn-add-cart" onclick="ajouterFilmAuPanier(${id})">🛒</button>
             </div>
         </div>
     </div>`;
@@ -258,7 +260,7 @@ const createMovieModal = (film) => {
                   
                   <div class="actions-area">
                     <a href="#lecteur-video" class="btn-play">▶ Regarder</a>
-                    <button class="btn-buy" onclick="ajouterAuPanier(${
+                    <button class="btn-buy" onclick="ajouterFilmAuPanier(${
                       film.id
                     })">Ajouter (${film.prix}€)</button>
                   </div>
