@@ -21,6 +21,7 @@
             <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
             <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
         </ul>
+        
         <div class="search-container">
             <input type="text" placeholder="Rechercher...">
         </div>
@@ -117,7 +118,6 @@
                     <option value="scifi">Science-Fiction</option>
                     <option value="docu">Documentaire</option>
                     <option value="comedy">Comédie</option>
-                    <option value="kids">Jeunesse</option>
                 </select>
                 <select>
                     <option value="all">Tous les formats</option>
@@ -128,7 +128,6 @@
             </section>
             
             <div class="media-grid">
-                
                 <div class="media-card">
                     <a href="#fiche-avengers" class="media-visual-link">
                         <div class="media-visual">
@@ -272,6 +271,7 @@
             </div>
         </div>
     </div>
+    
     <div id="fiche-interstellar" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -283,6 +283,7 @@
             </div>
         </div>
     </div>
+    
     <div id="fiche-stranger" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -294,6 +295,7 @@
             </div>
         </div>
     </div>
+    
     <div id="fiche-avengers" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -305,6 +307,7 @@
             </div>
         </div>
     </div>
+    
     <div id="fiche-roilion" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -316,6 +319,7 @@
             </div>
         </div>
     </div>
+    
     <div id="fiche-parrain" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -343,13 +347,16 @@
 
     <script>
         function changerPage(idPageVoulue) {
-            // Liste mise à jour : plus de 'page-categories'
+            // Liste des IDs de toutes les pages existantes
             const pages = ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'];
             
+            // 1. On cache toutes les pages
             pages.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.style.display = 'none';
             });
+            
+            // 2. On affiche uniquement celle demandée
             const page = document.getElementById(idPageVoulue);
             if(page) page.style.display = 'block';
         }
