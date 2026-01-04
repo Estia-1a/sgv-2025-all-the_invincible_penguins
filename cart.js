@@ -44,7 +44,28 @@ function afficherPanier() {
           </div>`;
   });
   container.innerHTML = html;
+
+  document.getElementById("films-cost").innerText = `${total.toFixed(2)}€`;
+
+  if (monPanier.length > 0) {
+    total += 3; // livraison
+    total += monPanier.length * 10;
+  }
+
   totalEl.textContent = total.toFixed(2) + " €";
+
+  document.getElementById("supports-cost").innerText = `${
+    monPanier.length
+  } x 10,00€ = ${(monPanier.length * 10).toFixed(2)}€`;
+
+  // Update shippment fees
+  let shippmentCost = 0;
+  if (monPanier.length > 0) {
+    shippmentCost = 3;
+  }
+  document.getElementById(
+    "shippment-cost"
+  ).innerText = `${shippmentCost.toFixed(2)}€`;
 }
 
 function supprimer(index) {
