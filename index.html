@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchot TV - Streaming & Store</title>
+    <title>Manchot TV - La Plateforme Complète</title>
     
     <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
     <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
@@ -16,96 +16,34 @@
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#" onclick="montrerAccueil()">Accueil</a></li>
-            <li><a href="#">Catalogue</a></li>
-            <li><a href="#">Catégories</a></li>
-            <li><a href="#">Recommandés</a></li>
-            <li><a href="#">Profil</a></li>
-            <li><a href="#" onclick="montrerPanier()">Panier</a></li>
+            <li><a href="#" onclick="changerPage('page-accueil')">Accueil</a></li>
+            <li><a href="#" onclick="changerPage('page-catalogue')">Catalogue</a></li>
+            <li><a href="#" onclick="changerPage('page-categories')">Catégories</a></li>
+            <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
+            <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
         </ul>
         <div class="search-container">
-            <input type="text" placeholder="Rechercher un film, un livre...">
+            <input type="text" placeholder="Rechercher...">
         </div>
     </nav>
 
     <main>
 
-        <div id="page-accueil">
-            
+        <div id="page-accueil" class="page-section">
             <section class="hero">
                 <div class="hero-content">
                     <h2>À la une : La Marche de l'Empereur</h2>
                     <p>Disponible en Streaming 4K ou en Blu-Ray Collector</p>
                     <div class="hero-buttons">
-                        <button class="btn-primary">▶ Regarder (Streaming)</button>
-                        <button class="btn-secondary">🛒 Acheter (Livraison)</button>
+                        <button class="btn-primary">▶ Regarder</button>
+                        <button class="btn-secondary">🛒 Acheter</button>
                     </div>
-                </div>
-            </section>
-
-            <section class="filters-section">
-                <span class="filter-label">Trier par :</span>
-                <div class="filter-group">
-                    <select><option>Genre (Docu, Film...)</option></select>
-                    <select><option>Format (Streaming, DVD, Livre)</option></select>
-                    <select><option>Prix croissant</option></select>
-                    <input type="text" placeholder="Mots-clés (ex: Pôle Sud)">
-                    <button class="btn-filter">Appliquer</button>
                 </div>
             </section>
 
             <section class="recommendations">
                 <h2>Recommandés pour vous (basé sur vos favoris)</h2>
-                
                 <div class="media-grid">
-                    
-                    <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Dispo. Streaming</span>
-                        </div>
-                        <div class="media-info">
-                            <h3>La Marche de l'Empereur</h3>
-                            <p class="genre">Documentaire</p>
-                            <p class="price">DVD : 15.99€</p>
-                            <div class="card-actions">
-                                <button class="btn-watch" title="Accès direct">▶ Lecture</button>
-                                <button class="btn-add-cart" title="Commander en livraison">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Dispo. Streaming</span>
-                        </div>
-                        <div class="media-info">
-                            <h3>Happy Feet</h3>
-                            <p class="genre">Animation / Jeunesse</p>
-                            <p class="price">Blu-Ray : 19.99€</p>
-                            <div class="card-actions">
-                                <button class="btn-watch">▶ Lecture</button>
-                                <button class="btn-add-cart">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            </div>
-                        <div class="media-info">
-                            <h3>Vie Sauvage (Livre)</h3>
-                            <p class="genre">Livre Photos</p>
-                            <p class="price">Livre : 25.50€</p>
-                            <div class="card-actions">
-                                <button class="btn-watch" disabled style="background:#ccc; cursor:not-allowed">Indisponible</button>
-                                <button class="btn-add-cart">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="media-card">
                         <div class="media-visual">
                             <div class="media-placeholder">Img</div>
@@ -113,7 +51,7 @@
                         </div>
                         <div class="media-info">
                             <h3>L'Antarctique</h3>
-                            <p class="genre">Reportage</p>
+                            <p class="genre">Documentaire</p>
                             <p class="price">DVD : 9.99€</p>
                             <div class="card-actions">
                                 <button class="btn-watch">▶ Lecture</button>
@@ -121,15 +59,154 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Vie Sauvage</h3>
+                            <p class="genre">Livre Photo</p>
+                            <p class="price">Livre : 25.00€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch" disabled style="opacity:0.5">Indisponible</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Dispo. Streaming</span>
+                        </div>
+                        <div class="media-info">
+                            <h3>Happy Feet</h3>
+                            <p class="genre">Animation</p>
+                            <p class="price">Blu-Ray : 19.99€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch">▶ Lecture</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <div id="page-panier" style="display: none;">
+        <div id="page-catalogue" class="page-section" style="display: none;">
+            <h1 class="page-title">Catalogue Complet</h1>
+            
+            <div class="filters-section">
+                <span class="filter-label">Filtrer par :</span>
+                <select><option>Tout voir</option><option>Films</option><option>Livres</option></select>
+                <select><option>Trier par prix</option></select>
+            </div>
+
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
+                    <div class="media-info">
+                        <h3>Glaciers du Monde</h3>
+                        <p class="genre">Livre</p>
+                        <p class="price">30.00€</p>
+                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Non dispo</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Océans</h3>
+                        <p class="genre">Film</p>
+                        <p class="price">12.00€</p>
+                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Planète Bleue</h3>
+                        <p class="genre">Série Docu</p>
+                        <p class="price">25.00€</p>
+                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
+                    <div class="media-info">
+                        <h3>Bande Originale</h3>
+                        <p class="genre">CD Audio</p>
+                        <p class="price">15.00€</p>
+                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <button class="btn-secondary">Page suivante &rarr;</button>
+            </div>
+        </div>
+
+        <div id="page-categories" class="page-section" style="display: none;">
+            <h1 class="page-title">Explorer par genre</h1>
+            <div class="categories-grid">
+                <div class="cat-card" style="background-color: #3498db;">
+                    <h3>Documentaires</h3>
+                </div>
+                <div class="cat-card" style="background-color: #e74c3c;">
+                    <h3>Films & Séries</h3>
+                </div>
+                <div class="cat-card" style="background-color: #f1c40f; color:black;">
+                    <h3>Jeunesse</h3>
+                </div>
+                <div class="cat-card" style="background-color: #2ecc71;">
+                    <h3>Livres & Magazines</h3>
+                </div>
+                <div class="cat-card" style="background-color: #9b59b6;">
+                    <h3>Audio & Musique</h3>
+                </div>
+                <div class="cat-card" style="background-color: #34495e;">
+                    <h3>Science</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-profil" class="page-section" style="display: none;">
+            <h1 class="page-title">Mon Espace Personnel</h1>
+            
+            <div class="profile-container">
+                <div class="profile-card">
+                    <h2>Mes Infos</h2>
+                    <div class="profile-header">
+                        <div class="avatar-circle">J</div>
+                        <div>
+                            <h3>Jean Dupont</h3>
+                            <p>Membre depuis 2024</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <p><strong>Email :</strong> jean.dupont@ecole.fr</p>
+                    <p><strong>Abonnement :</strong> Premium (Streaming 4K)</p>
+                    <button class="btn-secondary">Modifier le profil</button>
+                </div>
+
+                <div class="profile-card">
+                    <h2>Dernières commandes (Livraison)</h2>
+                    <ul class="order-list">
+                        <li>
+                            <span>Commande #1023 - 3 Articles</span>
+                            <span class="status delivered">Livré</span>
+                        </li>
+                        <li>
+                            <span>Commande #1089 - 1 Article</span>
+                            <span class="status pending">En cours</span>
+                        </li>
+                    </ul>
+                    <button class="btn-secondary" style="margin-top:10px;">Voir tout l'historique</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-panier" class="page-section" style="display: none;">
             <h1 class="page-title">Votre panier (Livraison)</h1>
             <div class="cart-container">
-                
                 <section class="cart-items-section">
                     <div class="cart-header-row">
                         <span>Article</span>
@@ -138,7 +215,6 @@
                         <span>Prix</span>
                         <span>Action</span>
                     </div>
-
                     <div class="cart-item">
                         <div class="item-visual">
                             <div class="img-placeholder">Img</div>
@@ -167,18 +243,27 @@
     </main>
 
     <footer>
-        <p>FAQ , CGV , Contact , Mentions légales</p>
+        <p>FAQ , CGV , Contact , Mentions légales - © 2026 Manchot TV</p>
     </footer>
 
     <script>
-        function montrerPanier() {
-            document.getElementById('page-accueil').style.display = 'none';
-            document.getElementById('page-panier').style.display = 'block';
-        }
+        function changerPage(idPageVoulue) {
+            // 1. On liste toutes les pages possibles
+            const toutesLesPages = ['page-accueil', 'page-catalogue', 'page-categories', 'page-profil', 'page-panier'];
+            
+            // 2. On cache tout le monde
+            toutesLesPages.forEach(page => {
+                const element = document.getElementById(page);
+                if (element) {
+                    element.style.display = 'none';
+                }
+            });
 
-        function montrerAccueil() {
-            document.getElementById('page-panier').style.display = 'none';
-            document.getElementById('page-accueil').style.display = 'block';
+            // 3. On affiche seulement celle qu'on veut
+            const pageAffiche = document.getElementById(idPageVoulue);
+            if (pageAffiche) {
+                pageAffiche.style.display = 'block';
+            }
         }
     </script>
 
