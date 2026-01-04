@@ -21,7 +21,6 @@
             <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
             <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
         </ul>
-        
         <div class="search-container">
             <input type="text" placeholder="Rechercher...">
         </div>
@@ -51,7 +50,6 @@
             <section class="recommendations">
                 <h2>Recommandés pour vous</h2>
                 <div class="media-grid">
-                    
                     <div class="media-card">
                         <a href="#fiche-empereur" class="media-visual-link">
                             <div class="media-visual">
@@ -68,7 +66,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="media-card">
                         <a href="#fiche-interstellar" class="media-visual-link">
                             <div class="media-visual">
@@ -85,7 +82,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="media-card">
                         <a href="#fiche-stranger" class="media-visual-link">
                             <div class="media-visual">
@@ -102,7 +98,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
         </div>
@@ -111,97 +106,114 @@
             <h1 class="page-title">Catalogue Complet</h1>
             
             <section class="filters-section" style="margin-bottom: 40px; background-color: #eee;">
-                <span class="filter-label">Filtrer par :</span>
-                <select>
-                    <option value="all">Tous les genres</option>
-                    <option value="action">Action</option>
+                <span class="filter-label">Filtrer par Genre :</span>
+                <select id="select-genre">
+                    <option value="all">Tout montrer</option>
+                    <option value="action">Action / Aventure</option>
+                    <option value="animation">Animation</option>
+                    <option value="policier">Policier</option>
                     <option value="scifi">Science-Fiction</option>
-                    <option value="docu">Documentaire</option>
-                    <option value="comedy">Comédie</option>
+                    <option value="serie">Séries TV</option>
                 </select>
-                <select>
-                    <option value="all">Tous les formats</option>
-                    <option value="stream">Streaming</option>
-                    <option value="phys">DVD / Blu-Ray</option>
-                </select>
-                <button class="btn-filter" style="background:black; color:white;">Rechercher</button>
+                <button class="btn-filter" onclick="filtrerCatalogue()" style="background:black; color:white;">Rechercher</button>
             </section>
             
-            <div class="media-grid">
-                <div class="media-card">
+            <div class="media-grid" id="catalogue-grid">
+                
+                <div class="media-card" data-genre="action">
                     <a href="#fiche-avengers" class="media-visual-link">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Stream</span>
-                        </div>
+                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
                     </a>
                     <div class="media-info">
                         <h3>Avengers: Endgame</h3>
                         <p class="genre">Action</p>
                         <p class="price">Blu-Ray 4K : 25.00€</p>
-                        <div class="card-actions">
-                            <a href="#fiche-avengers" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
-                        </div>
+                        <div class="card-actions"><a href="#fiche-avengers" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
                     </div>
                 </div>
 
-                <div class="media-card">
+                <div class="media-card" data-genre="animation">
                     <a href="#fiche-roilion" class="media-visual-link">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Stream</span>
-                        </div>
+                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
                     </a>
                     <div class="media-info">
                         <h3>Le Roi Lion</h3>
                         <p class="genre">Animation</p>
                         <p class="price">DVD : 15.00€</p>
-                        <div class="card-actions">
-                            <a href="#fiche-roilion" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
-                        </div>
+                        <div class="card-actions"><a href="#fiche-roilion" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
                     </div>
                 </div>
 
-                <div class="media-card">
+                <div class="media-card" data-genre="policier">
                     <a href="#fiche-parrain" class="media-visual-link">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                        </div>
+                        <div class="media-visual"><div class="media-placeholder">Img</div></div>
                     </a>
                     <div class="media-info">
                         <h3>Coffret Le Parrain</h3>
                         <p class="genre">Policier</p>
                         <p class="price">Coffret : 35.00€</p>
-                        <div class="card-actions">
-                            <a href="#fiche-parrain" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                            <button class="btn-add-cart">🛒 +</button>
-                        </div>
+                        <div class="card-actions"><a href="#fiche-parrain" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><button class="btn-add-cart">🛒 +</button></div>
                     </div>
                 </div>
 
-                <div class="media-card">
+                <div class="media-card" data-genre="serie">
                     <a href="#fiche-stranger" class="media-visual-link">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Stream</span>
-                        </div>
+                        <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
                     </a>
                     <div class="media-info">
                         <h3>Stranger Things S1</h3>
                         <p class="genre">Série</p>
                         <p class="price">DVD : 20.00€</p>
-                        <div class="card-actions">
-                            <a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
-                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
-                        </div>
+                        <div class="card-actions"><a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a><a href="#lecteur-video" class="btn-watch">▶ Lecture</a></div>
                     </div>
                 </div>
             </div>
             
+            <div id="suite-catalogue" class="media-grid" style="display: none; margin-top: 30px;">
+                
+                <div class="media-card" data-genre="scifi">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Jurassic Park</h3>
+                        <p class="genre">Science-Fiction</p>
+                        <p class="price">Blu-Ray : 12.00€</p>
+                        <div class="card-actions"><a href="#lecteur-video" class="btn-watch">▶ Lecture</a><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+
+                <div class="media-card" data-genre="animation">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Toy Story 4</h3>
+                        <p class="genre">Animation</p>
+                        <p class="price">DVD : 18.00€</p>
+                        <div class="card-actions"><a href="#lecteur-video" class="btn-watch">▶ Lecture</a><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+                
+                <div class="media-card" data-genre="action">
+                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
+                    <div class="media-info">
+                        <h3>The Dark Knight</h3>
+                        <p class="genre">Action / Policier</p>
+                        <p class="price">Blu-Ray 4K : 22.00€</p>
+                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Indisponible</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+
+                <div class="media-card" data-genre="serie">
+                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
+                    <div class="media-info">
+                        <h3>Breaking Bad</h3>
+                        <p class="genre">Série</p>
+                        <p class="price">Coffret : 80.00€</p>
+                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Indisponible</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+            </div>
+
             <div style="text-align:center; margin-top:30px;">
-                <button class="btn-secondary">Voir la suite &rarr;</button>
+                <button id="btn-load-more" class="btn-secondary" onclick="voirLaSuite()">Voir la suite &rarr;</button>
             </div>
         </div>
 
@@ -271,7 +283,6 @@
             </div>
         </div>
     </div>
-    
     <div id="fiche-interstellar" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -283,7 +294,6 @@
             </div>
         </div>
     </div>
-    
     <div id="fiche-stranger" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -295,7 +305,6 @@
             </div>
         </div>
     </div>
-    
     <div id="fiche-avengers" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -307,7 +316,6 @@
             </div>
         </div>
     </div>
-    
     <div id="fiche-roilion" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -319,7 +327,6 @@
             </div>
         </div>
     </div>
-    
     <div id="fiche-parrain" class="modal-overlay">
         <div class="modal-content">
             <a href="#" class="close-modal">&times;</a>
@@ -346,20 +353,49 @@
     </footer>
 
     <script>
+        // 1. FONCTION DE NAVIGATION (Onglets)
         function changerPage(idPageVoulue) {
-            // Liste des IDs de toutes les pages existantes
             const pages = ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'];
-            
-            // 1. On cache toutes les pages
             pages.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.style.display = 'none';
             });
-            
-            // 2. On affiche uniquement celle demandée
             const page = document.getElementById(idPageVoulue);
             if(page) page.style.display = 'block';
         }
+
+        // 2. FONCTION DE FILTRAGE DU CATALOGUE
+        function filtrerCatalogue() {
+            // On récupère le genre choisi dans le menu
+            const genreChoisi = document.getElementById('select-genre').value;
+            // On récupère toutes les cartes de films (visibles et cachées)
+            const toutesLesCartes = document.querySelectorAll('.media-card');
+
+            toutesLesCartes.forEach(carte => {
+                // On lit l'étiquette 'data-genre' sur la carte
+                const genreCarte = carte.getAttribute('data-genre');
+                
+                // Si 'all' est choisi ou si le genre correspond
+                if (genreChoisi === 'all' || genreCarte === genreChoisi) {
+                    carte.parentElement.style.display = 'flex'; // Assure que la grille s'affiche
+                    carte.style.display = 'block'; // Affiche la carte
+                } else {
+                    carte.style.display = 'none'; // Cache la carte
+                }
+            });
+
+            // Si on filtre, on force l'affichage de la "suite" pour ne pas rater de films
+            document.getElementById('suite-catalogue').style.display = 'flex';
+            document.getElementById('btn-load-more').style.display = 'none';
+        }
+
+        // 3. FONCTION "VOIR LA SUITE"
+        function voirLaSuite() {
+            // Affiche la deuxième grille de films
+            document.getElementById('suite-catalogue').style.display = 'flex';
+            // Cache le bouton
+            document.getElementById('btn-load-more').style.display = 'none';
+        }
     </script>
 </body>
-</html> 
+</html>
