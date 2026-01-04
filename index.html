@@ -3,23 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchot TV - Streaming & Store</title>
+    <title>Manchot TV - Final</title>
     
-    <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
-    <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
+    <style>
+        /* --- RESET & BASE --- */
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f6f8; color: #333; }
+        * { box-sizing: border-box; }
+        a { text-decoration: none; }
+        button { cursor: pointer; }
+
+        /* --- HEADER --- */
+        header { background: rgb(5, 141, 171); height: 100px; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: white; margin: 0; font-size: 2.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+
+        /* --- NAVIGATION --- */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 30px; height: 60px; background: white; border-bottom: 2px solid rgb(5, 141, 171); position: sticky; top: 0; z-index: 100; }
+        .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; margin: 0; }
+        .nav-links a { color: #333; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: rgb(5, 141, 171); }
+        .badge-count { background-color: #e74c3c; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8rem; vertical-align: top; margin-left: 5px; }
+        .search-container input { padding: 8px 15px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
+
+        /* --- SECTION : ACCUEIL (HERO) --- */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x400/003366/ffffff?text=La+Marche+de+l\'Empereur'); 
+            background-size: cover; background-position: center; 
+            height: 400px; border-radius: 10px; margin-bottom: 40px; 
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 5px black; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
+        .hero-buttons { display: flex; gap: 20px; justify-content: center; }
+        .btn-hero { padding: 12px 30px; border-radius: 30px; font-weight: bold; font-size: 1.1rem; transition: transform 0.2s; }
+        .btn-hero:hover { transform: scale(1.05); }
+        .btn-white { background: white; color: #333; }
+        .btn-blue { background: rgb(5, 141, 171); color: white; }
+
+        /* --- SECTION : CATALOGUE --- */
+        main { padding: 40px 20px; max-width: 1200px; margin: 0 auto; min-height: 800px; }
+        .page-title { text-align: center; color: rgb(17, 69, 120); margin-bottom: 40px; font-size: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 20px; display: inline-block; width: 100%; }
+
+        /* Grille */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; }
+
+        /* Carte */
+        .media-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .media-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+
+        .media-visual { height: 320px; position: relative; overflow: hidden; }
+        .media-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .media-card:hover .media-visual img { transform: scale(1.05); }
+
+        /* Badges */
+        .badge { position: absolute; top: 10px; right: 10px; padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; color: white; font-weight: bold; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .hd { background: rgb(17, 69, 120); }
+        .free { background: #27ae60; }
+
+        /* Infos Carte */
+        .media-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .media-info h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: rgb(17, 69, 120); height: 40px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+
+        .card-actions { display: flex; gap: 10px; margin-top: 10px; }
+        .btn-infos { flex: 3; background: white; color: rgb(5, 141, 171); border: 2px solid rgb(5, 141, 171); padding: 8px; border-radius: 5px; font-weight: bold; transition: 0.3s; font-size: 0.9rem; }
+        .btn-infos:hover { background: rgb(5, 141, 171); color: white; }
+        .btn-add-cart { flex: 1; background: #2ecc71; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; font-size: 1.1rem; transition: 0.2s; }
+        .btn-add-cart:hover { background: #27ae60; transform: scale(1.1); }
+
+        /* --- FENÊTRES MODALES (INFOS) --- */
+        .modal-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; 
+            opacity: 0; transition: opacity 0.3s; 
+        }
+        .modal-overlay:target { display: flex; opacity: 1; }
+
+        .modal-box { background: white; width: 800px; max-width: 95%; border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .small-box { width: 400px; padding: 20px; text-align: center; }
+
+        .close-cross { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: #333; line-height: 0.8; z-index: 10; transition: color 0.2s; }
+        .close-cross:hover { color: #e74c3c; }
+
+        .modal-flex { display: flex; }
+        .modal-poster { width: 300px; height: 450px; object-fit: cover; }
+        .modal-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+        
+        .modal-content h2 { margin: 0 0 15px 0; color: rgb(17, 69, 120); font-size: 2rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .meta-tags .tag { display: inline-block; background: #eee; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; color: #555; margin-right: 8px; font-weight: bold; }
+        .synopsis { font-size: 1rem; line-height: 1.6; color: #444; flex-grow: 1; margin: 20px 0; }
+
+        .actions-area { display: flex; gap: 15px; }
+        .btn-play { flex: 2; background: rgb(17, 69, 120); color: white; padding: 15px; border-radius: 5px; text-align: center; font-weight: bold; font-size: 1.1rem; transition: background 0.3s; }
+        .btn-play:hover { background: rgb(10, 45, 80); }
+        .btn-play.free { background: #27ae60; }
+        .btn-buy { flex: 1; background: white; color: #333; border: 2px solid #ccc; padding: 15px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+
+        /* --- LECTEUR VIDEO --- */
+        .video-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 2000; justify-content: center; align-items: center; }
+        .video-overlay:target { display: flex; }
+        .video-box { width: 90%; max-width: 1000px; position: relative; }
+        .close-video { position: absolute; top: -40px; right: 0; color: white; font-size: 1.2rem; font-weight: bold; }
+        video { width: 100%; border-radius: 8px; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .modal-flex { flex-direction: column; }
+            .modal-poster { width: 100%; height: 200px; }
+            .modal-box { height: 90vh; overflow-y: auto; }
+            .hero { height: 300px; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body onload="chargerPanier()">
 
     <header>
-        <div><h1>ManchoTV</h1></div>
+        <div class="header-inner">
+            <h1>🐧 ManchoTV</h1>
+        </div>
     </header>
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#" onclick="changerPage('page-accueil')">Accueil</a></li>
-            <li><a href="#" onclick="changerPage('page-catalogue')">Catalogue</a></li>
-            <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
-            <li><a href="#" onclick="changerPage('page-panier')">Panier <span id="nav-panier-count" class="badge-count">0</span></a></li>
+            <li><a onclick="changerPage('accueil')">Accueil</a></li>
+            <li><a onclick="changerPage('catalogue')">Catalogue</a></li>
+            <li><a href="#page-profil">Profil</a></li>
+            <li><a href="#page-panier">Panier <span id="nav-panier-count" class="badge-count">0</span></a></li>
         </ul>
         <div class="search-container">
             <input type="text" placeholder="Rechercher...">
@@ -28,344 +137,185 @@
 
     <main>
 
-        <div id="page-accueil" class="page-section">
-            <section class="hero">
+        <div id="page-accueil">
+            <div class="hero">
                 <div class="hero-content">
-                    <h2>À la une : La Marche de l'Empereur</h2>
-                    <p>Découvrez l'incroyable aventure des manchots.</p>
+                    <h2>La Marche de l'Empereur</h2>
+                    <p>Découvrez l'aventure extraordinaire en Antarctique.</p>
                     <div class="hero-buttons">
-                        <a href="#fiche-empereur" class="btn-secondary">ⓘ Plus d'infos</a>
-                        <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
+                        <a href="#info-1" class="btn-hero btn-white">ⓘ Infos</a>
+                        <a href="#lecteur-video" class="btn-hero btn-blue">▶ Lecture</a>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section class="filters-section">
-                <span class="filter-label">Trier par :</span>
-                <select id="select-tri-accueil"><option value="new">Nouveautés</option><option value="pop">Populaires</option></select>
-                <button class="btn-filter" onclick="trierAccueil()">Appliquer</button>
-            </section>
-
-            <section class="recommendations">
-                <h2>Recommandés pour vous</h2>
-                <div class="media-grid" id="grid-accueil">
-                    <div class="media-card" data-date="2005" data-pop="98">
-                        <a href="#fiche-empereur" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                        <div class="media-info">
-                            <h3>La Marche de l'Empereur</h3><p class="genre">Docu</p>
-                            <div class="card-actions">
-                                <a href="#fiche-empereur" class="btn-secondary">ⓘ Infos</a>
-                                <button class="btn-add-cart" onclick="ajouterAuPanier('La Marche de l\'Empereur', 9.99, 'DVD')">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media-card" data-date="2014" data-pop="95">
-                        <a href="#fiche-interstellar" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                        <div class="media-info">
-                            <h3>Interstellar</h3><p class="genre">Sci-Fi</p>
-                            <div class="card-actions">
-                                <a href="#fiche-interstellar" class="btn-secondary">ⓘ Infos</a>
-                                <button class="btn-add-cart" onclick="ajouterAuPanier('Interstellar', 15.00, 'Blu-Ray')">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media-card" data-date="2016" data-pop="90">
-                        <a href="#fiche-stranger" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                        <div class="media-info">
-                            <h3>Stranger Things</h3><p class="genre">Série</p>
-                            <div class="card-actions">
-                                <a href="#fiche-stranger" class="btn-secondary">ⓘ Infos</a>
-                                <button class="btn-add-cart" onclick="ajouterAuPanier('Stranger Things S1', 20.00, 'DVD')">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
+            <h2 style="margin-bottom:20px;">Recommandés pour vous</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-visual"><span class="badge free">Gratuit</span><img src="https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPMPZwt586.jpg"></div>
+                    <div class="media-info"><h3>Le Roi Lion</h3><div class="card-actions"><a href="#info-3" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Roi Lion', 15, 'DVD')">🛒</button></div></div>
                 </div>
-            </section>
-        </div>
-
-        <div id="page-catalogue" class="page-section" style="display: none;">
-            <h1 class="page-title">Catalogue Complet</h1>
-            <section class="filters-section" style="margin-bottom:40px; background:#eee;">
-                <span class="filter-label">Genre :</span>
-                <select id="select-genre">
-                    <option value="all">Tout</option><option value="action">Action</option><option value="animation">Animation</option><option value="policier">Policier</option><option value="scifi">Sci-Fi</option><option value="serie">Série</option>
-                </select>
-                <button class="btn-filter" onclick="filtrerCatalogue()" style="background:black; color:white;">Filtrer</button>
-            </section>
+                <div class="media-card">
+                    <div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"></div>
+                    <div class="media-info"><h3>Avengers</h3><div class="card-actions"><a href="#info-4" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Avengers', 25, 'BR')">🛒</button></div></div>
+                </div>
+                <div class="media-card">
+                    <div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"></div>
+                    <div class="media-info"><h3>Inception</h3><div class="card-actions"><a href="#info-8" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Inception', 15, 'BR')">🛒</button></div></div>
+                </div>
+            </div>
             
-            <div class="media-grid" id="catalogue-grid">
-                <div class="media-card" data-genre="action">
-                    <a href="#fiche-avengers" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                    <div class="media-info"><h3>Avengers: Endgame</h3><p class="genre">Action</p><p class="price">25.00€</p>
-                    <div class="card-actions"><a href="#fiche-avengers" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Avengers: Endgame', 25.00, 'Blu-Ray 4K')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="animation">
-                    <a href="#fiche-roilion" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                    <div class="media-info"><h3>Le Roi Lion</h3><p class="genre">Animation</p><p class="price">15.00€</p>
-                    <div class="card-actions"><a href="#fiche-roilion" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Le Roi Lion', 15.00, 'DVD')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="policier">
-                    <a href="#fiche-parrain" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
-                    <div class="media-info"><h3>Coffret Le Parrain</h3><p class="genre">Policier</p><p class="price">35.00€</p>
-                    <div class="card-actions"><a href="#fiche-parrain" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Coffret Le Parrain', 35.00, 'Coffret')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="serie">
-                    <a href="#fiche-stranger" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                    <div class="media-info"><h3>Stranger Things S1</h3><p class="genre">Série</p><p class="price">20.00€</p>
-                    <div class="card-actions"><a href="#fiche-stranger" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Stranger Things S1', 20.00, 'DVD')">🛒 +</button></div></div>
-                </div>
-            </div>
-
-            <div id="suite-catalogue" class="media-grid" style="display:none; margin-top:30px;">
-                <div class="media-card" data-genre="scifi">
-                    <a href="#fiche-jurassic" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                    <div class="media-info"><h3>Jurassic Park</h3><p class="genre">Sci-Fi</p><p class="price">12.00€</p>
-                    <div class="card-actions"><a href="#fiche-jurassic" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Jurassic Park', 12.00, 'Blu-Ray')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="animation">
-                    <a href="#fiche-toystory" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div></a>
-                    <div class="media-info"><h3>Toy Story 4</h3><p class="genre">Animation</p><p class="price">18.00€</p>
-                    <div class="card-actions"><a href="#fiche-toystory" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Toy Story 4', 18.00, 'DVD')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="action">
-                    <a href="#fiche-darkknight" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
-                    <div class="media-info"><h3>The Dark Knight</h3><p class="genre">Action</p><p class="price">22.00€</p>
-                    <div class="card-actions"><a href="#fiche-darkknight" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('The Dark Knight', 22.00, 'Blu-Ray 4K')">🛒 +</button></div></div>
-                </div>
-                <div class="media-card" data-genre="serie">
-                    <a href="#fiche-breakingbad" class="media-visual-link"><div class="media-visual"><div class="media-placeholder">Img</div></div></a>
-                    <div class="media-info"><h3>Breaking Bad</h3><p class="genre">Série</p><p class="price">80.00€</p>
-                    <div class="card-actions"><a href="#fiche-breakingbad" class="btn-secondary">ⓘ</a><button class="btn-add-cart" onclick="ajouterAuPanier('Breaking Bad', 80.00, 'Coffret')">🛒 +</button></div></div>
-                </div>
-            </div>
-            <div style="text-align:center; margin-top:30px;"><button id="btn-load-more" class="btn-secondary" onclick="voirLaSuite()">Voir la suite &rarr;</button></div>
-        </div>
-
-        <div id="page-profil" class="page-section" style="display: none;">
-            <h1 class="page-title">Mon Espace Personnel</h1>
-            <div class="profile-container">
-                <div class="profile-card">
-                    <h2>Mes Infos</h2>
-                    <div class="profile-header"><div class="avatar-circle">J</div><div><h3>Jean Dupont</h3><p>Cinéphile</p></div></div>
-                    <p><strong>Abonnement :</strong> Manchot+ (Actif)</p>
-                </div>
+            <div style="text-align:center; margin-top:40px;">
+                <button onclick="changerPage('catalogue')" class="btn-play" style="padding:15px 40px;">Voir tout le catalogue &rarr;</button>
             </div>
         </div>
 
-        <div id="page-panier" class="page-section" style="display: none;">
-            <h1 class="page-title">Votre panier</h1>
-            <div class="cart-container">
-                
-                <section class="cart-items-section">
-                    <div id="cart-list-container">
-                        <p style="text-align:center; padding:20px;">Votre panier est vide.</p>
-                    </div>
-                </section>
+        <div id="page-catalogue" style="display:none;">
+            <h2 class="page-title">Notre Catalogue Complet (16 Titres)</h2>
 
-                <aside class="cart-summary-section">
-                    <div class="summary-box">
-                        <h3>Total Commande</h3>
-                        <div style="display:flex; justify-content:space-between;">
-                            <span>Sous-total :</span> <span id="cart-subtotal">0.00 €</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between;">
-                            <span>Livraison :</span> <span>3.00 €</span>
-                        </div>
-                        <hr>
-                        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.2rem; margin:10px 0;">
-                            <span>Total :</span> <span id="cart-total">0.00 €</span>
-                        </div>
-                        <button class="btn-validate" onclick="ouvrirPaiement()">Passer au paiement</button>
-                    </div>
-                </aside>
+            <div class="media-grid">
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K Ultra</span><img src="https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg"></div><div class="media-info"><h3>Avatar</h3><div class="card-actions"><a href="#info-1" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Avatar', 19.99, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg"></div><div class="media-info"><h3>Titanic</h3><div class="card-actions"><a href="#info-2" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Titanic', 14.99, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge free">Gratuit</span><img src="https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPMPZwt586.jpg"></div><div class="media-info"><h3>Le Roi Lion</h3><div class="card-actions"><a href="#info-3" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Roi Lion', 10.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"></div><div class="media-info"><h3>Avengers: Endgame</h3><div class="card-actions"><a href="#info-4" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Avengers', 25.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"></div><div class="media-info"><h3>Joker</h3><div class="card-actions"><a href="#info-5" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Joker', 15.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/1qLJIQ729s0e8s3c3C6mH8v1F1p.jpg"></div><div class="media-info"><h3>Spider-Man</h3><div class="card-actions"><a href="#info-6" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Spider-Man', 12.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge free">Gratuit</span><img src="https://image.tmdb.org/t/p/w500/kgwjIb2JDHRhJy13pXvQlfFAPn.jpg"></div><div class="media-info"><h3>Reine des Neiges</h3><div class="card-actions"><a href="#info-7" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Reine des Neiges', 12.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"></div><div class="media-info"><h3>Inception</h3><div class="card-actions"><a href="#info-8" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Inception', 15.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"></div><div class="media-info"><h3>Matrix</h3><div class="card-actions"><a href="#info-9" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Matrix', 10.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg"></div><div class="media-info"><h3>Harry Potter</h3><div class="card-actions"><a href="#info-10" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Harry Potter', 18.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg"></div><div class="media-info"><h3>Gladiator</h3><div class="card-actions"><a href="#info-11" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Gladiator', 15.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge free">Gratuit</span><img src="https://image.tmdb.org/t/p/w500/iB64vpL3dIObOtMZgX3RqmWdQD.jpg"></div><div class="media-info"><h3>Shrek</h3><div class="card-actions"><a href="#info-12" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Shrek', 10.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"></div><div class="media-info"><h3>Forrest Gump</h3><div class="card-actions"><a href="#info-13" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Forrest Gump', 12.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg"></div><div class="media-info"><h3>Star Wars IV</h3><div class="card-actions"><a href="#info-14" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Star Wars', 20.00, 'BR')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">HD</span><img src="https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg"></div><div class="media-info"><h3>Toy Story</h3><div class="card-actions"><a href="#info-15" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Toy Story', 12.00, 'DVD')">🛒</button></div></div></div>
+                <div class="media-card"><div class="media-visual"><span class="badge hd">4K</span><img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"></div><div class="media-info"><h3>The Dark Knight</h3><div class="card-actions"><a href="#info-16" class="btn-infos">+ Infos</a><button class="btn-add-cart" onclick="ajouterAuPanier('Dark Knight', 15.00, 'BR')">🛒</button></div></div></div>
             </div>
         </div>
 
     </main>
 
+    <div id="info-1" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg" class="modal-poster"><div class="modal-content"><h2>Avatar</h2><div class="meta-tags"><span class="tag">2009</span><span class="tag">Sci-Fi</span></div><p class="synopsis">Sur la lointaine planète de Pandora, Jake Sully, un ancien marine, infiltre le peuple Na'vi.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a><button class="btn-buy" onclick="ajouterAuPanier('Avatar', 19.99, 'BR')">Ajouter (19€)</button></div></div></div></div></div>
+    <div id="info-2" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg" class="modal-poster"><div class="modal-content"><h2>Titanic</h2><div class="meta-tags"><span class="tag">1997</span><span class="tag">Romance</span></div><p class="synopsis">Une histoire d'amour naît entre Jack et Rose sur le paquebot maudit.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a><button class="btn-buy" onclick="ajouterAuPanier('Titanic', 14.99, 'DVD')">Ajouter (15€)</button></div></div></div></div></div>
+    <div id="info-3" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/b0MxU37dNmMwKtoPVYPMPZwt586.jpg" class="modal-poster"><div class="modal-content"><h2>Le Roi Lion</h2><div class="meta-tags"><span class="tag">1994</span><span class="tag">Animation</span></div><p class="synopsis">Le lionceau Simba doit reprendre son trône face à son oncle Scar.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play free">▶ Regarder (Gratuit)</a><button class="btn-buy" onclick="ajouterAuPanier('Roi Lion', 10.00, 'DVD')">Ajouter (10€)</button></div></div></div></div></div>
+    
+    <div id="info-4" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" class="modal-poster"><div class="modal-content"><h2>Avengers</h2><div class="meta-tags"><span class="tag">Action</span></div><p class="synopsis">Le combat final contre Thanos.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-5" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg" class="modal-poster"><div class="modal-content"><h2>Joker</h2><div class="meta-tags"><span class="tag">Drame</span></div><p class="synopsis">La descente aux enfers d'Arthur Fleck.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-6" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/1qLJIQ729s0e8s3c3C6mH8v1F1p.jpg" class="modal-poster"><div class="modal-content"><h2>Spider-Man</h2><div class="meta-tags"><span class="tag">Action</span></div><p class="synopsis">Peter Parker découvre ses pouvoirs.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-7" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/kgwjIb2JDHRhJy13pXvQlfFAPn.jpg" class="modal-poster"><div class="modal-content"><h2>Reine des Neiges</h2><div class="meta-tags"><span class="tag">Animation</span></div><p class="synopsis">Libérée, délivrée...</p><div class="actions-area"><a href="#lecteur-video" class="btn-play free">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-8" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg" class="modal-poster"><div class="modal-content"><h2>Inception</h2><div class="meta-tags"><span class="tag">Sci-Fi</span></div><p class="synopsis">Un vol dans les rêves.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-9" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg" class="modal-poster"><div class="modal-content"><h2>Matrix</h2><div class="meta-tags"><span class="tag">Sci-Fi</span></div><p class="synopsis">La pilule rouge ou la bleue ?</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-10" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg" class="modal-poster"><div class="modal-content"><h2>Harry Potter</h2><div class="meta-tags"><span class="tag">Fantastique</span></div><p class="synopsis">L'école des sorciers.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-11" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg" class="modal-poster"><div class="modal-content"><h2>Gladiator</h2><div class="meta-tags"><span class="tag">Péplum</span></div><p class="synopsis">Force et honneur.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-12" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/iB64vpL3dIObOtMZgX3RqmWdQD.jpg" class="modal-poster"><div class="modal-content"><h2>Shrek</h2><div class="meta-tags"><span class="tag">Animation</span></div><p class="synopsis">L'ogre et l'âne.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play free">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-13" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg" class="modal-poster"><div class="modal-content"><h2>Forrest Gump</h2><div class="meta-tags"><span class="tag">Drame</span></div><p class="synopsis">Cours Forrest !</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-14" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg" class="modal-poster"><div class="modal-content"><h2>Star Wars</h2><div class="meta-tags"><span class="tag">Sci-Fi</span></div><p class="synopsis">Que la force soit avec toi.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-15" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg" class="modal-poster"><div class="modal-content"><h2>Toy Story</h2><div class="meta-tags"><span class="tag">Animation</span></div><p class="synopsis">Vers l'infini et au-delà.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+    <div id="info-16" class="modal-overlay"><div class="modal-box"><a href="#" class="close-cross">&times;</a><div class="modal-flex"><img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg" class="modal-poster"><div class="modal-content"><h2>Dark Knight</h2><div class="meta-tags"><span class="tag">Action</span></div><p class="synopsis">Batman vs Joker.</p><div class="actions-area"><a href="#lecteur-video" class="btn-play">▶ Regarder</a></div></div></div></div></div>
+
+    <div id="page-panier" class="modal-overlay">
+        <div class="modal-box small-box">
+            <a href="#" class="close-cross">&times;</a>
+            <h2 style="text-align:center;">Votre Panier</h2>
+            <div id="cart-list-container" style="padding:20px; background:#f9f9f9; min-height:100px;">
+                <p>Panier vide.</p>
+            </div>
+            <hr>
+            <div style="text-align:right; font-weight:bold; margin:10px 0;">Total : <span id="cart-total">0.00 €</span></div>
+            <a href="#modal-paiement" class="btn-add-cart" style="display:block; text-align:center; padding:15px; text-decoration:none;">Passer au paiement</a>
+        </div>
+    </div>
+
     <div id="modal-paiement" class="modal-overlay">
-        <div class="modal-content" style="max-width:400px;">
-            <a href="#" class="close-modal">&times;</a>
-            <div class="modal-header" style="background:#111; color:white; height:80px; align-items:center;">
-                <h2>Paiement Sécurisé</h2>
-            </div>
-            <div class="modal-body">
-                <form onsubmit="event.preventDefault(); validerPaiement();">
-                    <label style="font-weight:bold;">Numéro de carte</label>
-                    <input type="text" placeholder="0000 0000 0000 0000" required style="width:100%; padding:10px; margin-bottom:10px;">
-                    
-                    <div style="display:flex; gap:10px;">
-                        <div style="flex:1">
-                            <label style="font-weight:bold;">Exp.</label>
-                            <input type="text" placeholder="MM/AA" required style="width:100%; padding:10px; margin-bottom:10px;">
-                        </div>
-                        <div style="flex:1">
-                            <label style="font-weight:bold;">CVV</label>
-                            <input type="text" placeholder="123" required style="width:100%; padding:10px; margin-bottom:10px;">
-                        </div>
-                    </div>
-                    
-                    <label style="font-weight:bold;">Nom du titulaire</label>
-                    <input type="text" placeholder="Jean Dupont" required style="width:100%; padding:10px; margin-bottom:20px;">
-                    
-                    <button type="submit" class="btn-watch" style="width:100%;">Payer maintenant</button>
-                </form>
-            </div>
+        <div class="modal-box small-box" style="text-align:center;">
+            <a href="#" class="close-cross">&times;</a>
+            <h2>Paiement Sécurisé</h2>
+            <p>Entrez vos coordonnées (Simulation)</p>
+            <input type="text" placeholder="Numéro CB" style="width:100%; padding:10px; margin:5px 0;">
+            <input type="text" placeholder="MM/AA" style="width:48%; padding:10px; margin:5px 0;">
+            <input type="text" placeholder="CVC" style="width:48%; padding:10px; margin:5px 0;">
+            <button onclick="validerPaiementJS()" class="btn-play" style="width:100%; margin-top:15px;">Confirmer et Payer</button>
         </div>
     </div>
 
-    <div id="fiche-empereur" class="modal-overlay"><div class="modal-content"><a href="#" class="close-modal">&times;</a><div class="modal-header" style="background:#eee;"><h2>La Marche de l'Empereur</h2></div><div class="modal-body"><p>Docu - 2005</p><div class="modal-actions"><a href="#lecteur-video" class="btn-watch">Lecture</a><button class="btn-add-cart" onclick="ajouterAuPanier('La Marche de l\'Empereur', 9.99, 'DVD')">Ajouter DVD</button></div></div></div></div>
-    <div id="fiche-interstellar" class="modal-overlay"><div class="modal-content"><a href="#" class="close-modal">&times;</a><div class="modal-header" style="background:#333;color:white"><h2>Interstellar</h2></div><div class="modal-body"><p>Sci-Fi - 2014</p><div class="modal-actions"><a href="#lecteur-video" class="btn-watch">Lecture</a><button class="btn-add-cart" onclick="ajouterAuPanier('Interstellar', 15.00, 'Blu-Ray')">Ajouter Blu-Ray</button></div></div></div></div>
+    <div id="page-profil" class="modal-overlay">
+        <div class="modal-box small-box" style="text-align:center;">
+            <a href="#" class="close-cross">&times;</a>
+            <h2>Mon Profil</h2>
+            <div style="width:80px; height:80px; background:rgb(5,141,171); color:white; font-size:2rem; border-radius:50%; display:flex; justify-content:center; align-items:center; margin:0 auto 15px auto;">J</div>
+            <h3>Jean Dupont</h3>
+            <p>Accès : Visiteur</p>
+        </div>
+    </div>
+
     <div id="lecteur-video" class="video-overlay">
-        <div class="video-container">
-            <a href="#" class="close-btn">&times; Fermer</a>
-            <video controls width="100%"><source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"></video>
+        <div class="video-box">
+            <a href="#" class="close-video">Fermer ✕</a>
+            <video controls autoplay width="100%">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
-
-    <footer><p>© 2026 Manchot TV</p></footer>
 
     <script>
-        // --- 1. GESTION DU PANIER ---
-        
-        // On récupère le panier stocké dans le navigateur, ou on crée une liste vide
         let monPanier = JSON.parse(localStorage.getItem('panierManchot')) || [];
 
-        // Fonction pour ajouter un article
+        function changerPage(nomPage) {
+            document.getElementById('page-accueil').style.display = 'none';
+            document.getElementById('page-catalogue').style.display = 'none';
+            document.getElementById('page-' + nomPage).style.display = 'block';
+        }
+
         function ajouterAuPanier(titre, prix, type) {
-            // Création de l'objet article
-            const article = {
-                titre: titre,
-                prix: prix,
-                type: type,
-                qte: 1
-            };
-
-            // Ajout au tableau
-            monPanier.push(article);
-            
-            // Sauvegarde dans le navigateur
-            sauvegarderPanier();
-            
-            // Mise à jour de l'affichage
-            afficherPanier();
-            
-            // Petit message de confirmation
-            alert(titre + " a été ajouté au panier !");
-        }
-
-        // Fonction pour sauvegarder
-        function sauvegarderPanier() {
+            monPanier.push({ titre, prix, type });
             localStorage.setItem('panierManchot', JSON.stringify(monPanier));
-            updateCompteur();
+            afficherPanier();
+            alert(titre + " ajouté au panier !");
         }
 
-        // Fonction pour afficher le nombre d'articles dans le menu
-        function updateCompteur() {
-            document.getElementById('nav-panier-count').textContent = monPanier.length;
-        }
-
-        // Fonction pour générer le HTML du panier
         function afficherPanier() {
             const container = document.getElementById('cart-list-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
             const totalEl = document.getElementById('cart-total');
+            const badge = document.getElementById('nav-panier-count');
+            badge.textContent = monPanier.length;
 
-            // Si panier vide
-            if (monPanier.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:20px;">Votre panier est vide.</p>';
-                subtotalEl.textContent = "0.00 €";
-                totalEl.textContent = "0.00 €";
-                return;
+            if (monPanier.length === 0) { 
+                container.innerHTML = "<p>Votre panier est vide.</p>"; 
+                totalEl.textContent = "0.00 €"; 
+                return; 
             }
 
-            // Sinon, on construit la liste
-            let html = '';
-            let total = 0;
-
+            let html = ''; let total = 0;
             monPanier.forEach((item, index) => {
                 total += item.prix;
-                html += `
-                    <div class="cart-item">
-                        <div class="item-visual" style="width:50%; font-weight:bold;">${item.titre}</div>
-                        <span class="item-info">${item.type}</span>
-                        <span class="item-price">${item.prix.toFixed(2)} €</span>
-                        <button class="btn-delete" onclick="supprimerArticle(${index})" style="color:red; border:1px solid red; background:white; cursor:pointer;">X</button>
-                    </div>
-                `;
+                html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+                        <span>${item.titre}</span>
+                        <span>${item.prix}€ <button onclick="supprimer(${index})" style="color:red; background:none; border:none; font-weight:bold;">x</button></span>
+                        </div>`;
             });
-
-            container.innerHTML = html;
-            
-            // Calculs finaux
-            subtotalEl.textContent = total.toFixed(2) + " €";
-            const totalAvecLivraison = total + 3.00;
-            totalEl.textContent = totalAvecLivraison.toFixed(2) + " €";
-            
-            updateCompteur();
+            container.innerHTML = html; 
+            totalEl.textContent = total.toFixed(2) + " €";
         }
 
-        // Fonction pour supprimer un article
-        function supprimerArticle(index) {
-            monPanier.splice(index, 1); // Enlève 1 élément à l'index donné
-            sauvegarderPanier();
-            afficherPanier();
+        function supprimer(index) { 
+            monPanier.splice(index, 1); 
+            localStorage.setItem('panierManchot', JSON.stringify(monPanier)); 
+            afficherPanier(); 
         }
 
-        // Fonction appelée au chargement de la page (onload dans <body>)
-        function chargerPanier() {
-            afficherPanier();
-            updateCompteur();
-        }
-
-        // --- 2. PAIEMENT ---
-        function ouvrirPaiement() {
-            if(monPanier.length === 0) {
-                alert("Votre panier est vide !");
-                return;
-            }
-            // Affiche la fenêtre modale de paiement (via CSS target ou modif style)
-            // Ici on utilise une petite astuce JS pour changer l'URL sans recharger
-            window.location.hash = "modal-paiement";
-        }
-
-        function validerPaiement() {
-            alert("Paiement accepté ! Merci pour votre commande.");
-            // On vide le panier
+        function validerPaiementJS() {
+            if(monPanier.length === 0) { alert("Le panier est vide !"); return; }
+            alert("Paiement validé ! Merci pour votre achat.");
             monPanier = [];
-            sauvegarderPanier();
+            localStorage.setItem('panierManchot', JSON.stringify(monPanier));
             afficherPanier();
-            // On ferme la fenêtre (retour à une ancre vide)
-            window.location.hash = "#";
-            // On retourne à l'accueil
-            changerPage('page-accueil');
+            window.location.hash = "#"; // Ferme la modale
         }
 
-        // --- 3. NAVIGATION & FILTRES (Déjà existants) ---
-        function changerPage(id) {
-            ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'].forEach(p => {
-                document.getElementById(p).style.display = 'none';
-            });
-            document.getElementById(id).style.display = 'block';
-        }
-        function voirLaSuite() { document.getElementById('suite-catalogue').style.display = 'flex'; document.getElementById('btn-load-more').style.display='none'; }
-        function filtrerCatalogue() {
-            const genre = document.getElementById('select-genre').value;
-            document.querySelectorAll('.media-card').forEach(c => {
-                if(c.hasAttribute('data-genre')) {
-                    c.style.display = (genre === 'all' || c.getAttribute('data-genre') === genre) ? 'block' : 'none';
-                    if(c.style.display === 'block') c.parentElement.style.display = 'flex';
-                }
-            });
-            voirLaSuite();
-        }
-        function trierAccueil() {
-            const critere = document.getElementById('select-tri-accueil').value;
-            const container = document.getElementById('grid-accueil');
-            const cards = Array.from(container.getElementsByClassName('media-card'));
-            cards.sort((a, b) => parseInt(b.getAttribute(critere==='new'?'data-date':'data-pop')) - parseInt(a.getAttribute(critere==='new'?'data-date':'data-pop')));
-            cards.forEach(c => container.appendChild(c));
-        }
+        window.onload = function() { 
+            afficherPanier(); 
+        };
     </script>
+
 </body>
 </html>
