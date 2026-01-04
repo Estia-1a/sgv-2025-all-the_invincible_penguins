@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchot TV - La Plateforme Complète</title>
+    <title>Manchot TV - Films & Séries</title>
     
     <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
     <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
@@ -18,12 +18,12 @@
         <ul class="nav-links">
             <li><a href="#" onclick="changerPage('page-accueil')">Accueil</a></li>
             <li><a href="#" onclick="changerPage('page-catalogue')">Catalogue</a></li>
-            <li><a href="#" onclick="changerPage('page-categories')">Catégories</a></li>
+            <li><a href="#" onclick="changerPage('page-categories')">Genres</a></li>
             <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
             <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
         </ul>
         <div class="search-container">
-            <input type="text" placeholder="Rechercher...">
+            <input type="text" placeholder="Rechercher un film, une série...">
         </div>
     </nav>
 
@@ -33,11 +33,29 @@
             <section class="hero">
                 <div class="hero-content">
                     <h2>À la une : La Marche de l'Empereur</h2>
-                    <p>Disponible en Streaming 4K ou en Blu-Ray Collector</p>
+                    <p>Le chef-d'œuvre documentaire en 4K ou en Édition Collector Blu-Ray.</p>
                     <div class="hero-buttons">
-                        <button class="btn-primary">▶ Regarder</button>
-                        <button class="btn-secondary">🛒 Acheter</button>
+                        <button class="btn-primary">▶ Regarder (Streaming)</button>
+                        <button class="btn-secondary">🛒 Acheter le Blu-Ray</button>
                     </div>
+                </div>
+            </section>
+
+            <section class="filters-section">
+                <span class="filter-label">Trier par :</span>
+                <div class="filter-group">
+                    <select>
+                        <option>Genre (Action, Drame...)</option>
+                        <option>Sci-Fi</option>
+                        <option>Comédie</option>
+                        <option>Horreur</option>
+                    </select>
+                    <select>
+                        <option>Format (Tout)</option>
+                        <option>Streaming 4K</option>
+                        <option>Blu-Ray / DVD</option>
+                    </select>
+                    <button class="btn-filter">Appliquer</button>
                 </div>
             </section>
 
@@ -62,11 +80,26 @@
                     <div class="media-card">
                         <div class="media-visual">
                             <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Dispo. Streaming</span>
                         </div>
                         <div class="media-info">
-                            <h3>Vie Sauvage</h3>
-                            <p class="genre">Livre Photo</p>
-                            <p class="price">Livre : 25.00€</p>
+                            <h3>Happy Feet 2</h3>
+                            <p class="genre">Animation / Jeunesse</p>
+                            <p class="price">Blu-Ray : 19.99€</p>
+                            <div class="card-actions">
+                                <button class="btn-watch">▶ Lecture</button>
+                                <button class="btn-add-cart">🛒 +</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            </div>
+                        <div class="media-info">
+                            <h3>Coffret Nolan (5 Films)</h3>
+                            <p class="genre">Sci-Fi / Action</p>
+                            <p class="price">Coffret 4K : 49.99€</p>
                             <div class="card-actions">
                                 <button class="btn-watch" disabled style="opacity:0.5">Indisponible</button>
                                 <button class="btn-add-cart">🛒 +</button>
@@ -79,9 +112,9 @@
                             <span class="badge-stream">Dispo. Streaming</span>
                         </div>
                         <div class="media-info">
-                            <h3>Happy Feet</h3>
-                            <p class="genre">Animation</p>
-                            <p class="price">Blu-Ray : 19.99€</p>
+                            <h3>Titanic</h3>
+                            <p class="genre">Drame / Romance</p>
+                            <p class="price">DVD : 12.00€</p>
                             <div class="card-actions">
                                 <button class="btn-watch">▶ Lecture</button>
                                 <button class="btn-add-cart">🛒 +</button>
@@ -93,77 +126,71 @@
         </div>
 
         <div id="page-catalogue" class="page-section" style="display: none;">
-            <h1 class="page-title">Catalogue Complet</h1>
+            <h1 class="page-title">Films & Séries</h1>
             
-            <div class="filters-section">
-                <span class="filter-label">Filtrer par :</span>
-                <select><option>Tout voir</option><option>Films</option><option>Livres</option></select>
-                <select><option>Trier par prix</option></select>
-            </div>
-
             <div class="media-grid">
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Interstellar</h3>
+                        <p class="genre">Sci-Fi</p>
+                        <p class="price">Blu-Ray : 15.00€</p>
+                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
+                <div class="media-card">
+                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <div class="media-info">
+                        <h3>Stranger Things S1</h3>
+                        <p class="genre">Série / Fantastique</p>
+                        <p class="price">DVD : 20.00€</p>
+                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                    </div>
+                </div>
                 <div class="media-card">
                     <div class="media-visual"><div class="media-placeholder">Img</div></div>
                     <div class="media-info">
-                        <h3>Glaciers du Monde</h3>
-                        <p class="genre">Livre</p>
-                        <p class="price">30.00€</p>
+                        <h3>Le Parrain (Trilogie)</h3>
+                        <p class="genre">Policier</p>
+                        <p class="price">Coffret : 35.00€</p>
                         <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Non dispo</button><button class="btn-add-cart">🛒 +</button></div>
                     </div>
                 </div>
                 <div class="media-card">
                     <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
                     <div class="media-info">
-                        <h3>Océans</h3>
-                        <p class="genre">Film</p>
-                        <p class="price">12.00€</p>
-                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
-                </div>
-                <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    <div class="media-info">
-                        <h3>Planète Bleue</h3>
-                        <p class="genre">Série Docu</p>
-                        <p class="price">25.00€</p>
-                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
-                </div>
-                <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
-                    <div class="media-info">
-                        <h3>Bande Originale</h3>
-                        <p class="genre">CD Audio</p>
-                        <p class="price">15.00€</p>
+                        <h3>Avengers: Endgame</h3>
+                        <p class="genre">Action / Super-Héros</p>
+                        <p class="price">Blu-Ray 4K : 25.00€</p>
                         <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
                     </div>
                 </div>
             </div>
             <div style="text-align:center; margin-top:30px;">
-                <button class="btn-secondary">Page suivante &rarr;</button>
+                <button class="btn-secondary">Voir plus de films &rarr;</button>
             </div>
         </div>
 
         <div id="page-categories" class="page-section" style="display: none;">
-            <h1 class="page-title">Explorer par genre</h1>
+            <h1 class="page-title">Parcourir par Genre</h1>
             <div class="categories-grid">
-                <div class="cat-card" style="background-color: #3498db;">
-                    <h3>Documentaires</h3>
-                </div>
                 <div class="cat-card" style="background-color: #e74c3c;">
-                    <h3>Films & Séries</h3>
+                    <h3>Action & Aventure</h3>
+                </div>
+                <div class="cat-card" style="background-color: #3498db;">
+                    <h3>Science-Fiction</h3>
                 </div>
                 <div class="cat-card" style="background-color: #f1c40f; color:black;">
-                    <h3>Jeunesse</h3>
+                    <h3>Comédie</h3>
                 </div>
-                <div class="cat-card" style="background-color: #2ecc71;">
-                    <h3>Livres & Magazines</h3>
+                <div class="cat-card" style="background-color: #2c3e50;">
+                    <h3>Horreur / Thriller</h3>
                 </div>
                 <div class="cat-card" style="background-color: #9b59b6;">
-                    <h3>Audio & Musique</h3>
+                    <h3>Jeunesse & Animation</h3>
                 </div>
-                <div class="cat-card" style="background-color: #34495e;">
-                    <h3>Science</h3>
+                <div class="cat-card" style="background-color: #27ae60;">
+                    <h3>Documentaires</h3>
                 </div>
             </div>
         </div>
@@ -178,24 +205,24 @@
                         <div class="avatar-circle">J</div>
                         <div>
                             <h3>Jean Dupont</h3>
-                            <p>Membre depuis 2024</p>
+                            <p>Cinéphile depuis 2024</p>
                         </div>
                     </div>
                     <hr>
                     <p><strong>Email :</strong> jean.dupont@ecole.fr</p>
-                    <p><strong>Abonnement :</strong> Premium (Streaming 4K)</p>
-                    <button class="btn-secondary">Modifier le profil</button>
+                    <p><strong>Abonnement :</strong> Manchot+ (Streaming Illimité)</p>
+                    <button class="btn-secondary">Gérer l'abonnement</button>
                 </div>
 
                 <div class="profile-card">
-                    <h2>Dernières commandes (Livraison)</h2>
+                    <h2>Mes commandes physiques</h2>
                     <ul class="order-list">
                         <li>
-                            <span>Commande #1023 - 3 Articles</span>
+                            <span>Coffret Harry Potter (Blu-Ray)</span>
                             <span class="status delivered">Livré</span>
                         </li>
                         <li>
-                            <span>Commande #1089 - 1 Article</span>
+                            <span>DVD: Le Seigneur des Anneaux</span>
                             <span class="status pending">En cours</span>
                         </li>
                     </ul>
@@ -209,8 +236,8 @@
             <div class="cart-container">
                 <section class="cart-items-section">
                     <div class="cart-header-row">
-                        <span>Article</span>
-                        <span>Type</span>
+                        <span>Film / Série</span>
+                        <span>Support</span>
                         <span>Qté</span>
                         <span>Prix</span>
                         <span>Action</span>
@@ -220,9 +247,9 @@
                             <div class="img-placeholder">Img</div>
                             <p>La Marche de l'Empereur</p>
                         </div>
-                        <span class="item-info">DVD</span>
+                        <span class="item-info">Blu-Ray 4K</span>
                         <div class="item-quantity"><input type="number" value="1"></div>
-                        <span class="item-price">15,99 €</span>
+                        <span class="item-price">24,99 €</span>
                         <button class="btn-delete">Supprimer</button>
                     </div>
                 </section>
@@ -230,10 +257,10 @@
                 <aside class="cart-summary-section">
                     <div class="summary-box">
                         <h3>Résumé de la commande :</h3>
-                        <p>Sous-total : 15,99 €</p>
+                        <p>Sous-total : 24,99 €</p>
                         <p>Livraison : 3,00 €</p>
                         <hr>
-                        <p class="total-price">Total : 18,99 €</p>
+                        <p class="total-price">Total : 27,99 €</p>
                         <button class="btn-validate">Valider la commande</button>
                     </div>
                 </aside>
@@ -248,10 +275,8 @@
 
     <script>
         function changerPage(idPageVoulue) {
-            // 1. On liste toutes les pages possibles
             const toutesLesPages = ['page-accueil', 'page-catalogue', 'page-categories', 'page-profil', 'page-panier'];
             
-            // 2. On cache tout le monde
             toutesLesPages.forEach(page => {
                 const element = document.getElementById(page);
                 if (element) {
@@ -259,7 +284,6 @@
                 }
             });
 
-            // 3. On affiche seulement celle qu'on veut
             const pageAffiche = document.getElementById(idPageVoulue);
             if (pageAffiche) {
                 pageAffiche.style.display = 'block';
