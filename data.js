@@ -217,6 +217,21 @@ const films = [
     image: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
     lecture: true,
   },
+  {
+    id: 17,
+    titre: "La Marche de l’Empereur",
+    annee: 2005,
+    genres: ["Documentaire"],
+    synopsis:
+      "Chaque année en Antarctique, les manchots empereurs entreprennent une marche incroyable pour assurer la survie de leur espèce.",
+    prix: 10.0,
+    support: "DVD",
+    badge: "HD",
+    gratuit: false,
+    image:
+      "https://fr.web.img6.acsta.net/medias/nmedia/18/35/47/16/18396216.jpg",
+    lecture: true,
+  },
 ];
 
 const getFilmById = (id) => films.filter((f) => f.id === id)[0];
