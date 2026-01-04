@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchot TV - Films & Séries</title>
+    <title>Manchot TV - Streaming & Store</title>
     
     <link rel="stylesheet" href="styles/desktop.css" media="screen and (min-width: 768px)">
     <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 767px)">
@@ -18,186 +18,196 @@
         <ul class="nav-links">
             <li><a href="#" onclick="changerPage('page-accueil')">Accueil</a></li>
             <li><a href="#" onclick="changerPage('page-catalogue')">Catalogue</a></li>
-            <li><a href="#" onclick="changerPage('page-categories')">Genres</a></li>
             <li><a href="#" onclick="changerPage('page-profil')">Profil</a></li>
             <li><a href="#" onclick="changerPage('page-panier')">Panier</a></li>
         </ul>
         <div class="search-container">
-            <input type="text" placeholder="Rechercher un film, une série...">
+            <input type="text" placeholder="Rechercher...">
         </div>
     </nav>
 
     <main>
 
         <div id="page-accueil" class="page-section">
+            
             <section class="hero">
                 <div class="hero-content">
                     <h2>À la une : La Marche de l'Empereur</h2>
-                    <p>Le chef-d'œuvre documentaire en 4K ou en Édition Collector Blu-Ray.</p>
+                    <p>Découvrez l'incroyable aventure des manchots en Antarctique.</p>
                     <div class="hero-buttons">
-                        <button class="btn-primary">▶ Regarder (Streaming)</button>
-                        <button class="btn-secondary">🛒 Acheter le Blu-Ray</button>
+                        <a href="#fiche-empereur" class="btn-secondary">ⓘ Plus d'infos</a>
+                        <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
                     </div>
                 </div>
             </section>
 
             <section class="filters-section">
                 <span class="filter-label">Trier par :</span>
-                <div class="filter-group">
-                    <select>
-                        <option>Genre (Action, Drame...)</option>
-                        <option>Sci-Fi</option>
-                        <option>Comédie</option>
-                        <option>Horreur</option>
-                    </select>
-                    <select>
-                        <option>Format (Tout)</option>
-                        <option>Streaming 4K</option>
-                        <option>Blu-Ray / DVD</option>
-                    </select>
-                    <button class="btn-filter">Appliquer</button>
-                </div>
+                <select><option>Nouveautés</option><option>Populaires</option></select>
+                <button class="btn-filter">Appliquer</button>
             </section>
 
             <section class="recommendations">
-                <h2>Recommandés pour vous (basé sur vos favoris)</h2>
+                <h2>Recommandés pour vous</h2>
                 <div class="media-grid">
+                    
                     <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Dispo. Streaming</span>
-                        </div>
+                        <a href="#fiche-empereur" class="media-visual-link">
+                            <div class="media-visual">
+                                <div class="media-placeholder">Img</div>
+                                <span class="badge-stream">Dispo. Streaming</span>
+                            </div>
+                        </a>
                         <div class="media-info">
-                            <h3>L'Antarctique</h3>
+                            <h3>La Marche de l'Empereur</h3>
                             <p class="genre">Documentaire</p>
-                            <p class="price">DVD : 9.99€</p>
                             <div class="card-actions">
-                                <button class="btn-watch">▶ Lecture</button>
+                                <a href="#fiche-empereur" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
                                 <button class="btn-add-cart">🛒 +</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Dispo. Streaming</span>
-                        </div>
+                        <a href="#fiche-interstellar" class="media-visual-link">
+                            <div class="media-visual">
+                                <div class="media-placeholder">Img</div>
+                                <span class="badge-stream">Dispo. Streaming</span>
+                            </div>
+                        </a>
                         <div class="media-info">
-                            <h3>Happy Feet 2</h3>
-                            <p class="genre">Animation / Jeunesse</p>
-                            <p class="price">Blu-Ray : 19.99€</p>
+                            <h3>Interstellar</h3>
+                            <p class="genre">Sci-Fi</p>
                             <div class="card-actions">
-                                <button class="btn-watch">▶ Lecture</button>
+                                <a href="#fiche-interstellar" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
                                 <button class="btn-add-cart">🛒 +</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
+                        <a href="#fiche-stranger" class="media-visual-link">
+                            <div class="media-visual">
+                                <div class="media-placeholder">Img</div>
+                                <span class="badge-stream">Dispo. Streaming</span>
                             </div>
+                        </a>
                         <div class="media-info">
-                            <h3>Coffret Nolan (5 Films)</h3>
-                            <p class="genre">Sci-Fi / Action</p>
-                            <p class="price">Coffret 4K : 49.99€</p>
+                            <h3>Stranger Things</h3>
+                            <p class="genre">Série</p>
                             <div class="card-actions">
-                                <button class="btn-watch" disabled style="opacity:0.5">Indisponible</button>
+                                <a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
                                 <button class="btn-add-cart">🛒 +</button>
                             </div>
                         </div>
                     </div>
-                    <div class="media-card">
-                        <div class="media-visual">
-                            <div class="media-placeholder">Img</div>
-                            <span class="badge-stream">Dispo. Streaming</span>
-                        </div>
-                        <div class="media-info">
-                            <h3>Titanic</h3>
-                            <p class="genre">Drame / Romance</p>
-                            <p class="price">DVD : 12.00€</p>
-                            <div class="card-actions">
-                                <button class="btn-watch">▶ Lecture</button>
-                                <button class="btn-add-cart">🛒 +</button>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </section>
         </div>
 
         <div id="page-catalogue" class="page-section" style="display: none;">
-            <h1 class="page-title">Films & Séries</h1>
+            <h1 class="page-title">Catalogue Complet</h1>
+            
+            <section class="filters-section" style="margin-bottom: 40px; background-color: #eee;">
+                <span class="filter-label">Filtrer par :</span>
+                <select>
+                    <option value="all">Tous les genres</option>
+                    <option value="action">Action</option>
+                    <option value="scifi">Science-Fiction</option>
+                    <option value="docu">Documentaire</option>
+                    <option value="comedy">Comédie</option>
+                    <option value="kids">Jeunesse</option>
+                </select>
+                <select>
+                    <option value="all">Tous les formats</option>
+                    <option value="stream">Streaming</option>
+                    <option value="phys">DVD / Blu-Ray</option>
+                </select>
+                <button class="btn-filter" style="background:black; color:white;">Rechercher</button>
+            </section>
             
             <div class="media-grid">
+                
                 <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    <div class="media-info">
-                        <h3>Interstellar</h3>
-                        <p class="genre">Sci-Fi</p>
-                        <p class="price">Blu-Ray : 15.00€</p>
-                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
-                </div>
-                <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
-                    <div class="media-info">
-                        <h3>Stranger Things S1</h3>
-                        <p class="genre">Série / Fantastique</p>
-                        <p class="price">DVD : 20.00€</p>
-                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
-                </div>
-                <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div></div>
-                    <div class="media-info">
-                        <h3>Le Parrain (Trilogie)</h3>
-                        <p class="genre">Policier</p>
-                        <p class="price">Coffret : 35.00€</p>
-                        <div class="card-actions"><button class="btn-watch" disabled style="opacity:0.5">Non dispo</button><button class="btn-add-cart">🛒 +</button></div>
-                    </div>
-                </div>
-                <div class="media-card">
-                    <div class="media-visual"><div class="media-placeholder">Img</div><span class="badge-stream">Stream</span></div>
+                    <a href="#fiche-avengers" class="media-visual-link">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Stream</span>
+                        </div>
+                    </a>
                     <div class="media-info">
                         <h3>Avengers: Endgame</h3>
-                        <p class="genre">Action / Super-Héros</p>
+                        <p class="genre">Action</p>
                         <p class="price">Blu-Ray 4K : 25.00€</p>
-                        <div class="card-actions"><button class="btn-watch">▶ Lecture</button><button class="btn-add-cart">🛒 +</button></div>
+                        <div class="card-actions">
+                            <a href="#fiche-avengers" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
+                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <a href="#fiche-roilion" class="media-visual-link">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Stream</span>
+                        </div>
+                    </a>
+                    <div class="media-info">
+                        <h3>Le Roi Lion</h3>
+                        <p class="genre">Animation</p>
+                        <p class="price">DVD : 15.00€</p>
+                        <div class="card-actions">
+                            <a href="#fiche-roilion" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
+                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <a href="#fiche-parrain" class="media-visual-link">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                        </div>
+                    </a>
+                    <div class="media-info">
+                        <h3>Coffret Le Parrain</h3>
+                        <p class="genre">Policier</p>
+                        <p class="price">Coffret : 35.00€</p>
+                        <div class="card-actions">
+                            <a href="#fiche-parrain" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
+                            <button class="btn-add-cart">🛒 +</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <a href="#fiche-stranger" class="media-visual-link">
+                        <div class="media-visual">
+                            <div class="media-placeholder">Img</div>
+                            <span class="badge-stream">Stream</span>
+                        </div>
+                    </a>
+                    <div class="media-info">
+                        <h3>Stranger Things S1</h3>
+                        <p class="genre">Série</p>
+                        <p class="price">DVD : 20.00€</p>
+                        <div class="card-actions">
+                            <a href="#fiche-stranger" class="btn-secondary" style="font-size:0.8rem">ⓘ Infos</a>
+                            <a href="#lecteur-video" class="btn-watch">▶ Lecture</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <div style="text-align:center; margin-top:30px;">
-                <button class="btn-secondary">Voir plus de films &rarr;</button>
-            </div>
-        </div>
-
-        <div id="page-categories" class="page-section" style="display: none;">
-            <h1 class="page-title">Parcourir par Genre</h1>
-            <div class="categories-grid">
-                <div class="cat-card" style="background-color: #e74c3c;">
-                    <h3>Action & Aventure</h3>
-                </div>
-                <div class="cat-card" style="background-color: #3498db;">
-                    <h3>Science-Fiction</h3>
-                </div>
-                <div class="cat-card" style="background-color: #f1c40f; color:black;">
-                    <h3>Comédie</h3>
-                </div>
-                <div class="cat-card" style="background-color: #2c3e50;">
-                    <h3>Horreur / Thriller</h3>
-                </div>
-                <div class="cat-card" style="background-color: #9b59b6;">
-                    <h3>Jeunesse & Animation</h3>
-                </div>
-                <div class="cat-card" style="background-color: #27ae60;">
-                    <h3>Documentaires</h3>
-                </div>
+                <button class="btn-secondary">Voir la suite &rarr;</button>
             </div>
         </div>
 
         <div id="page-profil" class="page-section" style="display: none;">
             <h1 class="page-title">Mon Espace Personnel</h1>
-            
             <div class="profile-container">
                 <div class="profile-card">
                     <h2>Mes Infos</h2>
@@ -210,23 +220,16 @@
                     </div>
                     <hr>
                     <p><strong>Email :</strong> jean.dupont@ecole.fr</p>
-                    <p><strong>Abonnement :</strong> Manchot+ (Streaming Illimité)</p>
-                    <button class="btn-secondary">Gérer l'abonnement</button>
+                    <p><strong>Abonnement :</strong> Manchot+ (Actif)</p>
                 </div>
-
                 <div class="profile-card">
                     <h2>Mes commandes physiques</h2>
                     <ul class="order-list">
-                        <li>
-                            <span>Coffret Harry Potter (Blu-Ray)</span>
-                            <span class="status delivered">Livré</span>
-                        </li>
-                        <li>
-                            <span>DVD: Le Seigneur des Anneaux</span>
-                            <span class="status pending">En cours</span>
+                        <li style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
+                            <span>Coffret Harry Potter</span>
+                            <span style="color:green; font-weight:bold;">Livré</span>
                         </li>
                     </ul>
-                    <button class="btn-secondary" style="margin-top:10px;">Voir tout l'historique</button>
                 </div>
             </div>
         </div>
@@ -235,28 +238,17 @@
             <h1 class="page-title">Votre panier (Livraison)</h1>
             <div class="cart-container">
                 <section class="cart-items-section">
-                    <div class="cart-header-row">
-                        <span>Film / Série</span>
-                        <span>Support</span>
-                        <span>Qté</span>
-                        <span>Prix</span>
-                        <span>Action</span>
-                    </div>
                     <div class="cart-item">
-                        <div class="item-visual">
-                            <div class="img-placeholder">Img</div>
-                            <p>La Marche de l'Empereur</p>
-                        </div>
+                        <div class="item-visual"><p>La Marche de l'Empereur</p></div>
                         <span class="item-info">Blu-Ray 4K</span>
-                        <div class="item-quantity"><input type="number" value="1"></div>
+                        <div class="item-quantity">Qté : <input type="number" value="1" style="width:40px;"></div>
                         <span class="item-price">24,99 €</span>
-                        <button class="btn-delete">Supprimer</button>
+                        <button class="btn-delete" style="color:red; background:white; border:1px solid red;">Supprimer</button>
                     </div>
                 </section>
-
                 <aside class="cart-summary-section">
                     <div class="summary-box">
-                        <h3>Résumé de la commande :</h3>
+                        <h3>Résumé</h3>
                         <p>Sous-total : 24,99 €</p>
                         <p>Livraison : 3,00 €</p>
                         <hr>
@@ -269,27 +261,98 @@
 
     </main>
 
+    <div id="fiche-empereur" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#eee;"><h2>La Marche de l'Empereur</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:green;font-weight:bold;">98% Match</span> | 2005 | 1h25</div>
+                <p class="description">L'histoire des manchots empereurs.</p>
+                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter DVD</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="fiche-interstellar" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#333; color:white;"><h2>Interstellar</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:green;font-weight:bold;">95% Match</span> | 2014 | 2h49</div>
+                <p class="description">Un voyage à travers l'espace et le temps.</p>
+                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter Blu-Ray</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="fiche-stranger" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#a00; color:white;"><h2>Stranger Things</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:green;font-weight:bold;">Top 10 Séries</span> | 2016 | 16+</div>
+                <p class="description">À Hawkins, un jeune garçon disparaît.</p>
+                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Voir Épisode 1</a><button class="btn-add-cart">🛒 Coffret DVD</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="fiche-avengers" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#4b0082; color:white;"><h2>Avengers: Endgame</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:green;font-weight:bold;">99% Match</span> | 2019 | 3h01</div>
+                <p class="description">Les Avengers rassemblent leurs forces.</p>
+                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter Blu-Ray</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="fiche-roilion" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#e67e22; color:white;"><h2>Le Roi Lion</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:green;font-weight:bold;">Classique</span> | 1994 | 1h28</div>
+                <p class="description">Le jeune lion Simba doit reprendre sa place.</p>
+                <div class="modal-actions"><a href="#lecteur-video" class="btn-watch">▶ Lancer le film</a><button class="btn-add-cart">🛒 Acheter DVD</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="fiche-parrain" class="modal-overlay">
+        <div class="modal-content">
+            <a href="#" class="close-modal">&times;</a>
+            <div class="modal-header" style="background:#000; color:white;"><h2>Le Parrain</h2></div>
+            <div class="modal-body">
+                <div class="meta-data"><span style="color:gray;font-weight:bold;">Indisponible en Stream</span> | 1972 | 2h55</div>
+                <p class="description">Le patriarche vieillissant d'une dynastie de la mafia.</p>
+                <div class="modal-actions"><button class="btn-watch" disabled style="opacity:0.5; cursor:not-allowed">Indisponible</button><button class="btn-add-cart">🛒 Acheter Coffret</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lecteur-video" class="video-overlay">
+        <div class="video-container">
+            <a href="#" class="close-btn">&times; Fermer la vidéo</a>
+            <video controls width="100%">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
     <footer>
-        <p>FAQ , CGV , Contact , Mentions légales - © 2026 Manchot TV</p>
+        <p>© 2026 Manchot TV - Projet Scolaire</p>
     </footer>
 
     <script>
         function changerPage(idPageVoulue) {
-            const toutesLesPages = ['page-accueil', 'page-catalogue', 'page-categories', 'page-profil', 'page-panier'];
+            // Liste mise à jour : plus de 'page-categories'
+            const pages = ['page-accueil', 'page-catalogue', 'page-profil', 'page-panier'];
             
-            toutesLesPages.forEach(page => {
-                const element = document.getElementById(page);
-                if (element) {
-                    element.style.display = 'none';
-                }
+            pages.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.style.display = 'none';
             });
-
-            const pageAffiche = document.getElementById(idPageVoulue);
-            if (pageAffiche) {
-                pageAffiche.style.display = 'block';
-            }
+            const page = document.getElementById(idPageVoulue);
+            if(page) page.style.display = 'block';
         }
     </script>
-
 </body>
 </html>
